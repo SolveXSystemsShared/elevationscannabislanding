@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "elevations247",
+      "runtimeExecutable": "/usr/local/opt/node@20/bin/node",
+      "runtimeArgs": [
+        "/tmp/elev247-start.mjs"
+      ],
+      "env": {
+        "PORT": "3010"
+      },
+      "port": 3010
+    }
+  ]
+}
