@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Lock } from "lucide-react";
 import { SEED_PRODUCTS } from "@/lib/seed";
 import { ProductTile } from "./product-tile";
-import { JOIN_URL } from "@/lib/constants";
+import { JOIN_URL, LOGIN_URL } from "@/lib/constants";
 
 export function ProductsTeaser() {
   const featured = SEED_PRODUCTS.slice(0, 8);
@@ -65,7 +64,7 @@ export function ProductsTeaser() {
                   <a href={JOIN_URL}>Join Free</a>
                 </Button>
                 <Button asChild variant="ghost">
-                  <Link href="/login">Already a member?</Link>
+                  <a href={LOGIN_URL}>Already a member?</a>
                 </Button>
               </div>
             </div>

@@ -1,10 +1,9 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Circle } from "lucide-react";
-import { JOIN_URL } from "@/lib/constants";
+import { JOIN_URL, LOGIN_URL } from "@/lib/constants";
 
 export function Hero() {
   const videoRef = React.useRef<HTMLVideoElement>(null);
@@ -136,7 +135,7 @@ export function Hero() {
               variant="ghost"
               className="border border-white/30 bg-white/5 backdrop-blur text-white hover:bg-white/10 hover:text-white hover:border-white/50 min-w-[180px]"
             >
-              <Link href="/login">Member Log In</Link>
+              <a href={LOGIN_URL}>Member Log In</a>
             </Button>
           </div>
 
