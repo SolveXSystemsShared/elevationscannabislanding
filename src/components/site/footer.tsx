@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { Mail } from "lucide-react";
-import { JOIN_URL } from "@/lib/constants";
+import { JOIN_URL, LOGIN_URL } from "@/lib/constants";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -44,17 +44,17 @@ export function Footer() {
             </p>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#how-it-works" className="text-ink hover:text-purple transition-colors">
+                <Link href="/#how-it-works" className="text-ink hover:text-purple transition-colors">
                   How It Works
                 </Link>
               </li>
               <li>
-                <Link href="#about" className="text-ink hover:text-purple transition-colors">
+                <Link href="/#about" className="text-ink hover:text-purple transition-colors">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="#faq" className="text-ink hover:text-purple transition-colors">
+                <Link href="/#faq" className="text-ink hover:text-purple transition-colors">
                   FAQ
                 </Link>
               </li>
@@ -71,9 +71,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="/login" className="text-ink hover:text-purple transition-colors">
+                <a href={LOGIN_URL} className="text-ink hover:text-purple transition-colors">
                   Log In
-                </Link>
+                </a>
               </li>
               <li>
                 <Link href="/legal/privacy" className="text-ink hover:text-purple transition-colors">
@@ -104,12 +104,12 @@ export function Footer() {
             </li>
             <li>
               <a
-                href="https://instagram.com/elevations247"
+                href="https://instagram.com/elevationscannabis"
                 className="inline-flex items-center gap-2 text-ink hover:text-purple transition-colors"
                 target="_blank"
                 rel="noreferrer"
               >
-                <InstagramIcon className="h-4 w-4" /> @elevations247
+                <InstagramIcon className="h-4 w-4" /> @elevationscannabis
               </a>
             </li>
           </ul>

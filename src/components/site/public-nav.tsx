@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Logo } from "./logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { JOIN_URL } from "@/lib/constants";
+import { JOIN_URL, LOGIN_URL } from "@/lib/constants";
 import { Menu, X } from "lucide-react";
 
 export function PublicNav({ overlay = false }: { overlay?: boolean }) {
@@ -22,10 +22,10 @@ export function PublicNav({ overlay = false }: { overlay?: boolean }) {
   const onDark = overlay && !scrolled;
 
   const links = [
-    { href: "#how-it-works", label: "How It Works" },
-    { href: "#products", label: "Products" },
-    { href: "#about", label: "About" },
-    { href: "#faq", label: "FAQ" },
+    { href: "/#how-it-works", label: "How It Works" },
+    { href: "/#products", label: "Products" },
+    { href: "/#about", label: "About" },
+    { href: "/#faq", label: "FAQ" },
   ];
 
   return (
@@ -69,7 +69,7 @@ export function PublicNav({ overlay = false }: { overlay?: boolean }) {
               onDark && "text-white border-white/30 hover:bg-white/10 hover:text-white hover:border-white/50",
             )}
           >
-            <Link href="/login">Log In</Link>
+            <a href={LOGIN_URL}>Log In</a>
           </Button>
           <Button asChild>
             <a href={JOIN_URL}>Join Now</a>
@@ -103,7 +103,7 @@ export function PublicNav({ overlay = false }: { overlay?: boolean }) {
             ))}
             <div className="flex flex-col gap-2 pt-4 border-t border-line">
               <Button asChild variant="ghost" className="w-full">
-                <Link href="/login">Log In</Link>
+                <a href={LOGIN_URL}>Log In</a>
               </Button>
               <Button asChild className="w-full">
                 <a href={JOIN_URL}>Join Now</a>

@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "elevations247",
-      "runtimeExecutable": "/usr/local/opt/node@20/bin/node",
+      "runtimeExecutable": "node",
       "runtimeArgs": [
-        "/tmp/elev247-start.mjs"
+        "dev-server.mjs"
       ],
       "env": {
         "PORT": "3010"
