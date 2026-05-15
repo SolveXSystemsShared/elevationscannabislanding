@@ -6,6 +6,13 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   const s = await getAdminSession();
   if (!s) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const patch = await req.json();
+  // Restore is handled by passing { restore: true } so callers don't have to
+  // know the internal archived_at field name.
+  if (patch && patch.restore === true) {
+    const ok = db.products.restore(params.id);
+    if (!ok) return NextResponse.json({ error: "not_found" }, { status: 404 });
+    return NextResponse.json({ product: db.products.get(params.id) });
+  }
   const product = db.products.update(params.id, patch);
   if (!product) return NextResponse.json({ error: "not_found" }, { status: 404 });
   return NextResponse.json({ product });

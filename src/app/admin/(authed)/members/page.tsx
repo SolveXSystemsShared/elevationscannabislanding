@@ -14,16 +14,26 @@ import { Download, Search } from "lucide-react";
 const fetcher = (u: string) => fetch(u).then((r) => r.json());
 
 export default function MembersAdminPage() {
+  const [filter, setFilter] = React.useState<
+    "all" | "active" | "suspended" | "archived"
+  >("all");
+  const includeArchived = filter === "archived" || filter === "all";
   const { data, isLoading } = useSWR<{ members: Member[] }>(
-    "/api/admin/members",
+    includeArchived
+      ? "/api/admin/members?includeArchived=1"
+      : "/api/admin/members",
     fetcher,
   );
   const [search, setSearch] = React.useState("");
-  const [filter, setFilter] = React.useState<"all" | "active" | "suspended">("all");
 
   const members = data?.members ?? [];
   const filtered = members.filter((m) => {
-    if (filter !== "all" && m.status !== filter) return false;
+    if (filter === "archived") {
+      if (!m.archived_at) return false;
+    } else {
+      if (m.archived_at) return false;
+      if (filter !== "all" && m.status !== filter) return false;
+    }
     if (search) {
       const q = search.toLowerCase();
       if (
@@ -63,7 +73,7 @@ export default function MembersAdminPage() {
             />
           </div>
           <div className="flex gap-1">
-            {(["all", "active", "suspended"] as const).map((f) => (
+            {(["all", "active", "suspended", "archived"] as const).map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
@@ -124,9 +134,13 @@ export default function MembersAdminPage() {
                   </td>
                   <td className="px-5 py-3 text-muted">{formatDate(m.created_at)}</td>
                   <td className="px-5 py-3">
-                    <Badge variant={m.status === "active" ? "success" : "danger"}>
-                      {m.status}
-                    </Badge>
+                    {m.archived_at ? (
+                      <Badge variant="subtle">Archived</Badge>
+                    ) : (
+                      <Badge variant={m.status === "active" ? "success" : "danger"}>
+                        {m.status}
+                      </Badge>
+                    )}
                   </td>
                 </tr>
               ))}
