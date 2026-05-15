@@ -12,39 +12,100 @@ export function Hero() {
   React.useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
+
+    // Ensure muted + inline before attempting to play. Required for autoplay
+    // on iOS Safari, Chrome mobile, and most desktop browsers.
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    v.loop = true;
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    v.setAttribute("webkit-playsinline", "");
+
     // Force-load (some browsers defer when source is added declaratively).
     try {
       v.load();
     } catch {
       /* noop */
     }
+
     const tryPlay = () => {
       const p = v.play();
       if (p && typeof p.catch === "function") {
-        p.catch((err) => {
-          if (process.env.NODE_ENV !== "production") {
-            // eslint-disable-next-line no-console
-            console.warn("[hero] video autoplay rejected:", err);
-          }
+        p.catch(() => {
+          // Autoplay rejected. We'll retry on the next user interaction.
         });
       }
     };
-    if (v.readyState >= 2) tryPlay();
-    const onCanPlay = () => {
-      setVideoReady(true);
+
+    const markReady = () => setVideoReady(true);
+
+    // Attempt to play as soon as any usable readiness event fires.
+    const onLoadedMetadata = () => tryPlay();
+    const onLoadedData = () => {
+      markReady();
       tryPlay();
     };
-    const onError = () => {
-      if (process.env.NODE_ENV !== "production") {
-        // eslint-disable-next-line no-console
-        console.error("[hero] video failed to load", v.error);
-      }
+    const onCanPlay = () => {
+      markReady();
+      tryPlay();
     };
+    const onPlaying = () => markReady();
+
+    // Some browsers occasionally pause looping videos when tabs change or
+    // when memory pressure kicks in. Resume automatically.
+    const onPause = () => {
+      if (!v.ended) tryPlay();
+    };
+    const onEnded = () => tryPlay();
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") tryPlay();
+    };
+
+    // Last-resort fallback: if the browser blocks autoplay entirely
+    // (some strict mobile data-saver modes), kick playback off on the
+    // first user interaction anywhere on the page.
+    const onFirstInteraction = () => {
+      tryPlay();
+      window.removeEventListener("touchstart", onFirstInteraction);
+      window.removeEventListener("click", onFirstInteraction);
+      window.removeEventListener("keydown", onFirstInteraction);
+      window.removeEventListener("scroll", onFirstInteraction);
+    };
+
+    v.addEventListener("loadedmetadata", onLoadedMetadata);
+    v.addEventListener("loadeddata", onLoadedData);
     v.addEventListener("canplay", onCanPlay);
-    v.addEventListener("error", onError);
+    v.addEventListener("playing", onPlaying);
+    v.addEventListener("pause", onPause);
+    v.addEventListener("ended", onEnded);
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("touchstart", onFirstInteraction, { passive: true });
+    window.addEventListener("click", onFirstInteraction);
+    window.addEventListener("keydown", onFirstInteraction);
+    window.addEventListener("scroll", onFirstInteraction, { passive: true });
+
+    // If the video is already buffered enough, play immediately.
+    if (v.readyState >= 2) {
+      markReady();
+      tryPlay();
+    } else {
+      tryPlay();
+    }
+
     return () => {
+      v.removeEventListener("loadedmetadata", onLoadedMetadata);
+      v.removeEventListener("loadeddata", onLoadedData);
       v.removeEventListener("canplay", onCanPlay);
-      v.removeEventListener("error", onError);
+      v.removeEventListener("playing", onPlaying);
+      v.removeEventListener("pause", onPause);
+      v.removeEventListener("ended", onEnded);
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("touchstart", onFirstInteraction);
+      window.removeEventListener("click", onFirstInteraction);
+      window.removeEventListener("keydown", onFirstInteraction);
+      window.removeEventListener("scroll", onFirstInteraction);
     };
   }, []);
 
@@ -74,8 +135,14 @@ export function Hero() {
         loop
         muted
         playsInline
+        x-webkit-airplay="deny"
+        controls={false}
+        disablePictureInPicture
+        disableRemotePlayback
         preload="auto"
+        poster=""
         aria-hidden="true"
+        tabIndex={-1}
       >
         <source src="/assets/video/landing-bg.mp4" type="video/mp4" />
       </video>
