@@ -23,7 +23,7 @@ import {
   type OrderStatus,
 } from "@/lib/types";
 import { formatZAR, formatDateTime } from "@/lib/utils";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Archive, ArchiveRestore } from "lucide-react";
 
 const fetcher = (u: string) => fetch(u).then((r) => r.json());
 
@@ -58,6 +58,31 @@ export default function AdminOrderDetail() {
     );
   }
 
+  const archive = async () => {
+    if (!confirm(`Archive order ${o.reference}? It will be hidden from the live pipeline.`)) return;
+    const res = await fetch(`/api/admin/orders/${o.id}`, { method: "DELETE" });
+    if (!res.ok) {
+      toast({ kind: "error", title: "Could not archive" });
+      return;
+    }
+    toast({ kind: "info", title: "Order archived" });
+    mutate();
+  };
+
+  const restore = async () => {
+    const res = await fetch(`/api/admin/orders/${o.id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ restore: true }),
+    });
+    if (!res.ok) {
+      toast({ kind: "error", title: "Could not restore" });
+      return;
+    }
+    toast({ kind: "success", title: "Order restored" });
+    mutate();
+  };
+
   const save = async () => {
     const res = await fetch(`/api/admin/orders/${o.id}/status`, {
       method: "PUT",
@@ -88,6 +113,17 @@ export default function AdminOrderDetail() {
       <AdminPageHeader
         title={`Order ${o.reference}`}
         description={`Placed ${formatDateTime(o.placed_at)} by ${o.member_name}`}
+        action={
+          o.archived_at ? (
+            <Button onClick={restore}>
+              <ArchiveRestore className="h-4 w-4" /> Restore
+            </Button>
+          ) : (
+            <Button variant="ghost" onClick={archive} className="text-danger">
+              <Archive className="h-4 w-4" /> Archive
+            </Button>
+          )
+        }
       />
 
       <div className="grid gap-6 lg:grid-cols-3">

@@ -29,8 +29,9 @@ const VARIANT = (s: Order["status"]) =>
         : "subtle";
 
 export default function AdminOrdersPage() {
+  const [showArchived, setShowArchived] = React.useState(false);
   const { data, isLoading } = useSWR<{ orders: Order[] }>(
-    "/api/admin/orders",
+    showArchived ? "/api/admin/orders?includeArchived=1" : "/api/admin/orders",
     fetcher,
     { refreshInterval: 12000 },
   );
@@ -85,6 +86,17 @@ export default function AdminOrdersPage() {
               </SelectContent>
             </Select>
           </div>
+          <button
+            onClick={() => setShowArchived((v) => !v)}
+            className={
+              "px-3 py-1.5 rounded-btn text-xs font-medium transition-colors " +
+              (showArchived
+                ? "bg-purple text-white"
+                : "border border-line text-ink hover:border-purple/30")
+            }
+          >
+            {showArchived ? "Hide archived" : "Show archived"}
+          </button>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -109,7 +121,10 @@ export default function AdminOrdersPage() {
               {filtered.map((o) => (
                 <tr
                   key={o.id}
-                  className="border-t border-line hover:bg-purple/[0.02] cursor-pointer"
+                  className={
+                    "border-t border-line hover:bg-purple/[0.02] cursor-pointer " +
+                    (o.archived_at ? "opacity-60" : "")
+                  }
                 >
                   <td className="px-5 py-3 font-mono">
                     <Link
@@ -124,9 +139,12 @@ export default function AdminOrdersPage() {
                     {o.items.reduce((s, i) => s + i.qty, 0)} items
                   </td>
                   <td className="px-5 py-3">
-                    <Badge variant={VARIANT(o.status)}>
-                      {STATUS_LABEL[o.status]}
-                    </Badge>
+                    <div className="flex items-center gap-2">
+                      <Badge variant={VARIANT(o.status)}>
+                        {STATUS_LABEL[o.status]}
+                      </Badge>
+                      {o.archived_at && <Badge variant="subtle">Archived</Badge>}
+                    </div>
                   </td>
                   <td className="px-5 py-3 text-muted text-xs">
                     {formatDateTime(o.placed_at)}

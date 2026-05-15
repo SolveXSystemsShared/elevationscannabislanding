@@ -25,7 +25,7 @@ import { Textarea } from "@/components/ui/input";
 import { useToast } from "@/components/ui/toaster";
 import { CATEGORY_LABEL, type Product } from "@/lib/types";
 import { formatZAR } from "@/lib/utils";
-import { Plus, Pencil, Trash2 } from "lucide-react";
+import { Plus, Pencil, Archive, ArchiveRestore } from "lucide-react";
 
 const fetcher = (u: string) => fetch(u).then((r) => r.json());
 
@@ -47,8 +47,9 @@ const empty = {
 };
 
 export default function ProductsAdminPage() {
+  const [showArchived, setShowArchived] = React.useState(false);
   const { data, mutate, isLoading } = useSWR<{ products: Product[] }>(
-    "/api/admin/products",
+    showArchived ? "/api/admin/products?includeArchived=1" : "/api/admin/products",
     fetcher,
   );
   const { data: gradesData } = useSWR<{ grades: { id: string; label: string }[] }>(
@@ -128,10 +129,20 @@ export default function ProductsAdminPage() {
     mutate();
   };
 
-  const remove = async (p: Product) => {
-    if (!confirm(`Delete ${p.name}? This cannot be undone in this demo.`)) return;
+  const archive = async (p: Product) => {
+    if (!confirm(`Archive ${p.name}? It will be hidden from the storefront.`)) return;
     await fetch(`/api/admin/products/${p.id}`, { method: "DELETE" });
     toast({ kind: "info", title: "Product archived" });
+    mutate();
+  };
+
+  const restore = async (p: Product) => {
+    await fetch(`/api/admin/products/${p.id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ restore: true }),
+    });
+    toast({ kind: "success", title: "Product restored" });
     mutate();
   };
 
@@ -148,6 +159,24 @@ export default function ProductsAdminPage() {
       />
 
       <div className="rounded-card border border-line bg-surface shadow-card overflow-hidden">
+        <div className="px-5 py-3 border-b border-line bg-background/40 flex items-center justify-between gap-3">
+          <p className="text-xs text-muted">
+            {showArchived
+              ? "Showing active and archived products. Archived items are hidden from the storefront."
+              : "Showing active products only."}
+          </p>
+          <button
+            onClick={() => setShowArchived((v) => !v)}
+            className={
+              "px-3 py-1.5 rounded-btn text-xs font-medium transition-colors " +
+              (showArchived
+                ? "bg-purple text-white"
+                : "border border-line text-ink hover:border-purple/30")
+            }
+          >
+            {showArchived ? "Hide archived" : "Show archived"}
+          </button>
+        </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-background/50 text-xs uppercase tracking-wider text-muted">
@@ -169,58 +198,90 @@ export default function ProductsAdminPage() {
                   </td>
                 </tr>
               )}
-              {products.map((p) => (
-                <tr key={p.id} className="border-t border-line hover:bg-purple/[0.02]">
-                  <td className="px-5 py-3">
-                    <p className="font-medium">{p.name}</p>
-                    <p className="text-xs text-muted truncate max-w-[260px]">
-                      {p.description}
-                    </p>
-                  </td>
-                  <td className="px-5 py-3">
-                    <Badge variant="subtle">{CATEGORY_LABEL[p.category]}</Badge>
-                  </td>
-                  <td className="px-5 py-3 text-muted">
-                    {p.grade} · <span className="capitalize">{p.type}</span>
-                  </td>
-                  <td className="px-5 py-3 font-mono">{p.thc_percent}%</td>
-                  <td className="px-5 py-3 text-right font-semibold">
-                    {formatZAR(p.retail_price)}
-                  </td>
-                  <td className="px-5 py-3 text-center">
-                    <button
-                      onClick={() => toggleStock(p)}
-                      className="ring-focus rounded-btn"
-                      aria-label={`Toggle stock for ${p.name}`}
-                    >
-                      <Badge
-                        variant={p.status === "in_stock" ? "success" : "danger"}
+              {products.map((p) => {
+                const isArchived = Boolean(p.archived_at);
+                return (
+                  <tr
+                    key={p.id}
+                    className={
+                      "border-t border-line hover:bg-purple/[0.02] " +
+                      (isArchived ? "opacity-60" : "")
+                    }
+                  >
+                    <td className="px-5 py-3">
+                      <div className="flex items-center gap-2">
+                        <p className="font-medium">{p.name}</p>
+                        {isArchived && <Badge variant="subtle">Archived</Badge>}
+                      </div>
+                      <p className="text-xs text-muted truncate max-w-[260px]">
+                        {p.description}
+                      </p>
+                    </td>
+                    <td className="px-5 py-3">
+                      <Badge variant="subtle">{CATEGORY_LABEL[p.category]}</Badge>
+                    </td>
+                    <td className="px-5 py-3 text-muted">
+                      {p.grade} · <span className="capitalize">{p.type}</span>
+                    </td>
+                    <td className="px-5 py-3 font-mono">{p.thc_percent}%</td>
+                    <td className="px-5 py-3 text-right font-semibold">
+                      {formatZAR(p.retail_price)}
+                    </td>
+                    <td className="px-5 py-3 text-center">
+                      <button
+                        onClick={() => toggleStock(p)}
+                        className="ring-focus rounded-btn"
+                        aria-label={`Toggle stock for ${p.name}`}
+                        disabled={isArchived}
                       >
-                        {p.status === "in_stock" ? "In stock" : "Out"}
-                      </Badge>
-                    </button>
-                  </td>
-                  <td className="px-5 py-3 text-right space-x-1">
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      onClick={() => startEdit(p)}
-                      aria-label="Edit"
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      onClick={() => remove(p)}
-                      aria-label="Delete"
-                      className="text-danger hover:text-danger"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                        <Badge
+                          variant={p.status === "in_stock" ? "success" : "danger"}
+                        >
+                          {p.status === "in_stock" ? "In stock" : "Out"}
+                        </Badge>
+                      </button>
+                    </td>
+                    <td className="px-5 py-3 text-right space-x-1">
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        onClick={() => startEdit(p)}
+                        aria-label="Edit"
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      {isArchived ? (
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          onClick={() => restore(p)}
+                          aria-label="Restore"
+                          className="text-success hover:text-success"
+                        >
+                          <ArchiveRestore className="h-4 w-4" />
+                        </Button>
+                      ) : (
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          onClick={() => archive(p)}
+                          aria-label="Archive"
+                          className="text-danger hover:text-danger"
+                        >
+                          <Archive className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+              {!isLoading && products.length === 0 && (
+                <tr>
+                  <td colSpan={7} className="px-5 py-10 text-center text-muted">
+                    No products to show.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

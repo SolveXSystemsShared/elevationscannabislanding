@@ -45,6 +45,7 @@ export interface Product {
   display_order: number;
   created_at: string;
   updated_at: string;
+  archived_at?: string | null;
 }
 
 export interface Member {
@@ -63,6 +64,7 @@ export interface Member {
   agreed_to_terms: boolean;
   created_at: string;
   last_active: string;
+  archived_at?: string | null;
 }
 
 export interface OrderItem {
@@ -92,6 +94,7 @@ export interface Order {
   cancel_reason?: string;
   placed_at: string;
   updated_at: string;
+  archived_at?: string | null;
 }
 
 export interface CartItem {

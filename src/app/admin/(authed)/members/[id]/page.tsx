@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/toaster";
 import { formatCell, formatDateTime, formatZAR } from "@/lib/utils";
 import { STATUS_LABEL, type Member, type Order } from "@/lib/types";
-import { ArrowLeft, ShieldCheck, ShieldOff } from "lucide-react";
+import { ArrowLeft, ShieldCheck, ShieldOff, Archive, ArchiveRestore } from "lucide-react";
 
 const fetcher = (u: string) => fetch(u).then((r) => r.json());
 
@@ -51,6 +51,31 @@ export default function AdminMemberPage() {
     mutate();
   };
 
+  const archive = async () => {
+    if (!confirm(`Archive ${m.first_name} ${m.last_name}? They will be hidden from the active register.`)) return;
+    const res = await fetch(`/api/admin/members/${m.id}`, { method: "DELETE" });
+    if (!res.ok) {
+      toast({ kind: "error", title: "Could not archive" });
+      return;
+    }
+    toast({ kind: "info", title: "Member archived" });
+    mutate();
+  };
+
+  const restore = async () => {
+    const res = await fetch(`/api/admin/members/${m.id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ restore: true }),
+    });
+    if (!res.ok) {
+      toast({ kind: "error", title: "Could not restore" });
+      return;
+    }
+    toast({ kind: "success", title: "Member restored" });
+    mutate();
+  };
+
   return (
     <>
       <Link
@@ -63,15 +88,32 @@ export default function AdminMemberPage() {
         title={`${m.first_name} ${m.last_name}`}
         description={`Member ID ${m.member_id} · joined ${formatDateTime(m.created_at)}`}
         action={
-          m.status === "active" ? (
-            <Button variant="ghost" onClick={() => setStatus("suspended")} className="text-danger">
-              <ShieldOff className="h-4 w-4" /> Suspend
-            </Button>
-          ) : (
-            <Button onClick={() => setStatus("active")}>
-              <ShieldCheck className="h-4 w-4" /> Reactivate
-            </Button>
-          )
+          <div className="flex gap-2">
+            {m.archived_at ? (
+              <Button onClick={restore}>
+                <ArchiveRestore className="h-4 w-4" /> Restore
+              </Button>
+            ) : (
+              <>
+                {m.status === "active" ? (
+                  <Button
+                    variant="ghost"
+                    onClick={() => setStatus("suspended")}
+                    className="text-danger"
+                  >
+                    <ShieldOff className="h-4 w-4" /> Suspend
+                  </Button>
+                ) : (
+                  <Button onClick={() => setStatus("active")}>
+                    <ShieldCheck className="h-4 w-4" /> Reactivate
+                  </Button>
+                )}
+                <Button variant="ghost" onClick={archive} className="text-danger">
+                  <Archive className="h-4 w-4" /> Archive
+                </Button>
+              </>
+            )}
+          </div>
         }
       />
 
@@ -82,7 +124,11 @@ export default function AdminMemberPage() {
           </CardHeader>
           <CardContent className="space-y-3 text-sm">
             <Row label="Status">
-              <Badge variant={m.status === "active" ? "success" : "danger"}>{m.status}</Badge>
+              {m.archived_at ? (
+                <Badge variant="subtle">Archived</Badge>
+              ) : (
+                <Badge variant={m.status === "active" ? "success" : "danger"}>{m.status}</Badge>
+              )}
             </Row>
             <Row label="Cell">{formatCell(m.cell)}</Row>
             <Row label="Email">{m.email}</Row>

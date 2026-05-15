@@ -40,9 +40,15 @@ function init() {
 
 export const db = {
   products: {
-    list: (opts?: { adminView?: boolean; category?: string }) => {
-      const all = init().products.filter((p) => !("deleted_at" in p) || !p);
-      let filtered = opts?.adminView ? all : all.filter((p) => p.status === "in_stock");
+    list: (opts?: {
+      adminView?: boolean;
+      category?: string;
+      includeArchived?: boolean;
+    }) => {
+      const all = init().products;
+      // Public/storefront and default admin view both hide archived products.
+      let filtered = opts?.includeArchived ? all : all.filter((p) => !p.archived_at);
+      if (!opts?.adminView) filtered = filtered.filter((p) => p.status === "in_stock");
       if (opts?.category) {
         filtered = filtered.filter((p) => p.category === opts.category);
       }
@@ -70,12 +76,30 @@ export const db = {
       const list = init().products;
       const i = list.findIndex((p) => p.id === id);
       if (i < 0) return false;
-      list.splice(i, 1);
+      list[i] = {
+        ...list[i],
+        archived_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+      return true;
+    },
+    restore: (id: string) => {
+      const list = init().products;
+      const i = list.findIndex((p) => p.id === id);
+      if (i < 0) return false;
+      list[i] = {
+        ...list[i],
+        archived_at: null,
+        updated_at: new Date().toISOString(),
+      };
       return true;
     },
   },
   members: {
-    list: () => init().members,
+    list: (opts?: { includeArchived?: boolean }) => {
+      const all = init().members;
+      return opts?.includeArchived ? all : all.filter((m) => !m.archived_at);
+    },
     get: (id: string) => init().members.find((m) => m.id === id),
     getByMemberId: (memberId: string) =>
       init().members.find((m) => m.member_id === memberId),
@@ -107,10 +131,27 @@ export const db = {
       if (m) m.status = status;
       return m;
     },
+    archive: (id: string) => {
+      const m = init().members.find((x) => x.id === id);
+      if (!m) return null;
+      m.archived_at = new Date().toISOString();
+      return m;
+    },
+    restore: (id: string) => {
+      const m = init().members.find((x) => x.id === id);
+      if (!m) return null;
+      m.archived_at = null;
+      return m;
+    },
   },
   orders: {
-    list: (opts?: { memberId?: string; status?: OrderStatus }) => {
+    list: (opts?: {
+      memberId?: string;
+      status?: OrderStatus;
+      includeArchived?: boolean;
+    }) => {
       let list = init().orders;
+      if (!opts?.includeArchived) list = list.filter((o) => !o.archived_at);
       if (opts?.memberId) list = list.filter((o) => o.member_id === opts.memberId);
       if (opts?.status) list = list.filter((o) => o.status === opts.status);
       return list.sort(
@@ -160,6 +201,20 @@ export const db = {
       Object.assign(o, patch, { updated_at: new Date().toISOString() });
       return o;
     },
+    archive: (id: string) => {
+      const o = init().orders.find((x) => x.id === id || x.reference === id);
+      if (!o) return null;
+      o.archived_at = new Date().toISOString();
+      o.updated_at = new Date().toISOString();
+      return o;
+    },
+    restore: (id: string) => {
+      const o = init().orders.find((x) => x.id === id || x.reference === id);
+      if (!o) return null;
+      o.archived_at = null;
+      o.updated_at = new Date().toISOString();
+      return o;
+    },
   },
   grades: {
     list: () => init().grades.sort((a, b) => a.display_order - b.display_order),
@@ -187,6 +242,7 @@ export const db = {
   reports: {
     revenue: (from: Date, to: Date) => {
       const orders = init().orders.filter((o) => {
+        if (o.archived_at) return false;
         const d = new Date(o.placed_at);
         return d >= from && d <= to && o.status === "delivered";
       });
