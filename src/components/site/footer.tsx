@@ -29,11 +29,11 @@ export function Footer() {
         <div className="space-y-4">
           <Logo />
           <p className="text-sm text-muted leading-relaxed max-w-xs">
-            Stellenbosch&apos;s exclusive private cannabis members club. Premium,
-            curated, delivered. Members only.
+            A chemistry-lab dispensary. Lab-graded flower, named like elements
+            and served like science. Members only.
           </p>
-          <p className="text-[11px] uppercase tracking-wider text-muted/80 font-medium">
-            Above the Rest.
+          <p className="font-display text-[11px] uppercase tracking-[0.25em] text-purple/90 font-medium">
+            The Science of a Better High.
           </p>
         </div>
 
@@ -96,24 +96,24 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             <li>
               <a
-                href="mailto:info@elevations247.com"
+                href="mailto:info@breakingbud.co.za"
                 className="inline-flex items-center gap-2 text-ink hover:text-purple transition-colors"
               >
-                <Mail className="h-4 w-4" /> info@elevations247.com
+                <Mail className="h-4 w-4" /> info@breakingbud.co.za
               </a>
             </li>
             <li>
               <a
-                href="https://instagram.com/elevationscannabis"
+                href="https://instagram.com/breakingbud"
                 className="inline-flex items-center gap-2 text-ink hover:text-purple transition-colors"
                 target="_blank"
                 rel="noreferrer"
               >
-                <InstagramIcon className="h-4 w-4" /> @elevationscannabis
+                <InstagramIcon className="h-4 w-4" /> @breakingbud
               </a>
             </li>
           </ul>
-          <p className="pt-2 text-xs text-muted leading-relaxed">
+          <p className="pt-2 font-mono text-xs text-muted leading-relaxed">
             Stellenbosch, Western Cape · 24/7 delivery
           </p>
         </div>
@@ -122,7 +122,7 @@ export function Footer() {
       <div className="border-t border-line">
         <div className="container-wide py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-muted">
           <p>
-            © {new Date().getFullYear()} Elevations247. All rights reserved. Private
+            © {new Date().getFullYear()} Breaking Bud. All rights reserved. Private
             Members Club. Stellenbosch, Western Cape.
           </p>
           <p>For adults 18 and older only. Cannabis for personal use. Private club members only.</p>

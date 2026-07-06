@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -16,42 +17,59 @@ const config: Config = {
     },
     extend: {
       colors: {
+        /*
+         * BREAKING BUD accent — the toxic-green ramp, kept under the legacy
+         * `purple` key so existing markup keeps compiling. Values are driven by
+         * CSS variables (see globals.css) so every token swaps between the
+         * light ("lab paper") and dark ("fume lab") palettes automatically.
+         */
         purple: {
-          DEFAULT: "#6C3FC5",
-          light: "#9B72E8",
-          dark: "#3D1F8A",
-          50: "#F4EEFB",
-          100: "#E7DBF7",
-          200: "#CFB7EE",
-          300: "#B392E3",
-          400: "#9B72E8",
-          500: "#6C3FC5",
-          600: "#5A33A8",
-          700: "#4A2A8C",
-          800: "#3D1F8A",
-          900: "#2A1463",
+          DEFAULT: "rgb(var(--purple) / <alpha-value>)", // links, actions, tile symbol
+          light: "rgb(var(--purple-light) / <alpha-value>)", // highlights / glow
+          dark: "rgb(var(--purple-dark) / <alpha-value>)", // strongest emphasis / hover
+          50: "rgb(var(--purple-50) / <alpha-value>)",
+          100: "rgb(var(--purple-100) / <alpha-value>)",
+          200: "rgb(var(--purple-200) / <alpha-value>)",
+          300: "rgb(var(--purple-300) / <alpha-value>)",
+          400: "rgb(var(--purple-400) / <alpha-value>)",
+          500: "rgb(var(--purple-500) / <alpha-value>)",
+          600: "rgb(var(--purple-600) / <alpha-value>)",
+          700: "rgb(var(--purple-700) / <alpha-value>)",
+          800: "rgb(var(--purple-800) / <alpha-value>)",
+          900: "rgb(var(--purple-900) / <alpha-value>)",
         },
-        gold: "#C9A961",
-        background: "#FAFAFA",
-        surface: "#FFFFFF",
-        ink: "#1A1A2E",
-        muted: "#6B7280",
-        line: "#E5E7EB",
-        success: "#10B981",
-        warning: "#F59E0B",
-        danger: "#EF4444",
+        // Named brand tokens for new markup
+        toxic: {
+          yield: "rgb(var(--toxic-yield) / <alpha-value>)",
+          green: "rgb(var(--toxic-green) / <alpha-value>)",
+          reaction: "rgb(var(--toxic-reaction) / <alpha-value>)",
+        },
+        fume: "rgb(var(--fume) / <alpha-value>)", // constant: always-dark panels
+        panel: "rgb(var(--panel) / <alpha-value>)",
+        glass: "rgb(var(--glass) / <alpha-value>)",
+        bone: "rgb(var(--bone) / <alpha-value>)", // constant: light text on dark
+        gold: "rgb(var(--gold) / <alpha-value>)",
+        background: "rgb(var(--background) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        ink: "rgb(var(--ink) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        line: "rgb(var(--line) / <alpha-value>)",
+        success: "rgb(var(--success) / <alpha-value>)",
+        warning: "rgb(var(--warning) / <alpha-value>)",
+        danger: "rgb(var(--danger) / <alpha-value>)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-playfair)", "Georgia", "serif"],
+        sans: ["var(--font-plex-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-oswald)", "Impact", "sans-serif"],
+        mono: ["var(--font-plex-mono)", "ui-monospace", "monospace"],
       },
       fontSize: {
-        h1: ["48px", { lineHeight: "1.1", fontWeight: "700" }],
-        h2: ["32px", { lineHeight: "1.2", fontWeight: "600" }],
-        h3: ["22px", { lineHeight: "1.3", fontWeight: "600" }],
+        h1: ["52px", { lineHeight: "1.02", fontWeight: "700", letterSpacing: "-0.01em" }],
+        h2: ["34px", { lineHeight: "1.08", fontWeight: "700" }],
+        h3: ["22px", { lineHeight: "1.25", fontWeight: "600" }],
         body: ["16px", { lineHeight: "1.6", fontWeight: "400" }],
         caption: ["13px", { lineHeight: "1.4", fontWeight: "500" }],
-        button: ["14px", { lineHeight: "1", fontWeight: "600", letterSpacing: "0.04em" }],
+        button: ["14px", { lineHeight: "1", fontWeight: "600", letterSpacing: "0.06em" }],
       },
       borderRadius: {
         card: "12px",
@@ -59,8 +77,8 @@ const config: Config = {
         badge: "6px",
       },
       boxShadow: {
-        card: "0 2px 12px rgba(0,0,0,0.06)",
-        "card-hover": "0 6px 24px rgba(108, 63, 197, 0.12)",
+        card: "0 2px 14px rgba(0,0,0,0.5)",
+        "card-hover": "0 0 28px rgba(180, 240, 0, 0.16)",
       },
       keyframes: {
         "fade-in": {

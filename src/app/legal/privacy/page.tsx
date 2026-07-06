@@ -15,14 +15,14 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
         <p className="mt-3 text-muted">
-          How Elevations247 collects, processes, and protects your personal
+          How Breaking Bud collects, processes, and protects your personal
           information under the Protection of Personal Information Act (POPIA),
           Act 4 of 2013.
         </p>
         <div className="mt-8 space-y-6 text-ink/80 leading-relaxed">
           <ul className="space-y-4">
             <li>
-              Elevations247 collects personal information (name, cell, email, ID
+              Breaking Bud collects personal information (name, cell, email, ID
               number, address) solely for the purposes of verifying membership
               eligibility, processing orders, and maintaining the private club
               register.
@@ -38,7 +38,7 @@ export default function PrivacyPage() {
               (Act 4 of 2013).
             </li>
             <li>
-              All data is stored securely. Elevations247 takes all reasonable
+              All data is stored securely. Breaking Bud takes all reasonable
               measures to protect personal information against loss, damage, and
               unauthorised access.
             </li>
@@ -49,8 +49,8 @@ export default function PrivacyPage() {
           </ul>
           <p>
             For any data-protection request, contact{" "}
-            <a className="text-purple underline" href="mailto:info@elevations247.com">
-              info@elevations247.com
+            <a className="text-purple underline" href="mailto:info@breakingbud.co.za">
+              info@breakingbud.co.za
             </a>
             .
           </p>

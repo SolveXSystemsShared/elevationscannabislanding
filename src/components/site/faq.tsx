@@ -6,11 +6,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Reveal } from "./reveal";
 
 const ITEMS = [
   {
     q: "Is this legal?",
-    a: "Yes. Elevations247 operates as a private members club, grounded in the constitutional right to privacy as affirmed by the Constitutional Court in Minister of Justice v Prince [2018] ZACC 30. Cannabis is exchanged between members as club credits applied toward communal growing and acquisition for personal use by adult members.",
+    a: "Yes. Breaking Bud operates as a private members club, grounded in the constitutional right to privacy as affirmed by the Constitutional Court in Minister of Justice v Prince [2018] ZACC 30. Cannabis is exchanged between members as club credits applied toward communal growing and acquisition for personal use by adult members.",
   },
   {
     q: "How does the private club model work?",
@@ -43,26 +44,28 @@ export function FAQ() {
     <section id="faq" className="py-24 sm:py-32 bg-surface">
       <div className="container-wide">
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.22em] text-purple font-semibold">
+          <Reveal direction="right">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-purple font-semibold">
               FAQ
             </p>
-            <h2 className="mt-3 font-display text-[34px] sm:text-h2 font-semibold leading-tight tracking-tight">
+            <h2 className="mt-3 font-display uppercase text-[34px] sm:text-h2 font-bold leading-tight tracking-tight">
               Frequently asked.
             </h2>
             <p className="mt-3 text-muted text-pretty">
               Everything you might want to know before joining. If something
-              isn&apos;t covered, drop us a note at hello@elevations247.co.za.
+              isn&apos;t covered, drop us a note at hello@breakingbud.co.za.
             </p>
-          </div>
-          <Accordion type="single" collapsible className="w-full">
-            {ITEMS.map((item, i) => (
-              <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger>{item.q}</AccordionTrigger>
-                <AccordionContent>{item.a}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          </Reveal>
+          <Reveal delay={120}>
+            <Accordion type="single" collapsible className="w-full">
+              {ITEMS.map((item, i) => (
+                <AccordionItem key={i} value={`item-${i}`}>
+                  <AccordionTrigger>{item.q}</AccordionTrigger>
+                  <AccordionContent>{item.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
         </div>
       </div>
     </section>

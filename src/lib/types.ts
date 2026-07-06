@@ -12,7 +12,7 @@ export type OrderStatus =
   | "cancelled";
 
 /**
- * Bundle pricing — Elevations sells most products in a tiered ladder.
+ * Bundle pricing — Breaking Bud sells most products in a tiered ladder.
  * Flower / preroll: 1g / 2g / 3g.
  * Moonstick: 1 unit / 2 units.
  * Vape: per-unit only (no ladder).

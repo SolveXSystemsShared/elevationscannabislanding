@@ -3,8 +3,8 @@ import type { Product, Member, Order, Bundle } from "./types";
 const NOW = new Date("2026-04-27T08:00:00Z").toISOString();
 
 /**
- * Real Elevations247 catalogue, sourced from:
- *   SX-2026-04-ELV-PRICING-v0.1 (Pricing + Stock + Margin sheets)
+ * Real Breaking Bud catalogue, sourced from:
+ *   SX-2026-04-BB-PRICING-v0.1 (Pricing + Stock + Margin sheets)
  *   Stock-on-hand as at 27 April 2026.
  *
  * Bundle ladders (per pricing sheet):
@@ -534,7 +534,7 @@ export const SEED_MEMBERS: Member[] = [
 export const SEED_ORDERS: Order[] = [
   {
     id: "o_001",
-    reference: "ELV-00247",
+    reference: "BB-00247",
     member_id: "m_001",
     member_name: "Sasha Botha",
     status: "out_for_delivery",
@@ -555,7 +555,7 @@ export const SEED_ORDERS: Order[] = [
   },
   {
     id: "o_002",
-    reference: "ELV-00246",
+    reference: "BB-00246",
     member_id: "m_002",
     member_name: "Liam van der Merwe",
     status: "delivered",
@@ -574,7 +574,7 @@ export const SEED_ORDERS: Order[] = [
   },
   {
     id: "o_003",
-    reference: "ELV-00245",
+    reference: "BB-00245",
     member_id: "m_003",
     member_name: "Nadia Pretorius",
     status: "packing",
@@ -594,7 +594,7 @@ export const SEED_ORDERS: Order[] = [
   },
   {
     id: "o_004",
-    reference: "ELV-00244",
+    reference: "BB-00244",
     member_id: "m_004",
     member_name: "Kabelo Dlamini",
     status: "confirmed",
@@ -613,7 +613,7 @@ export const SEED_ORDERS: Order[] = [
   },
   {
     id: "o_005",
-    reference: "ELV-00243",
+    reference: "BB-00243",
     member_id: "m_005",
     member_name: "Robyn Müller",
     status: "delivered",

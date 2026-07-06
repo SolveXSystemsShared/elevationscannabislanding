@@ -10,7 +10,7 @@ export const DEMO = {
   MEMBER_OTP: "123456",
   ADMIN_OTP: "000123",
   ADMIN_PASSWORD: "420420",
-  ADMIN_EMAIL: "admin@elevations247.co.za",
+  ADMIN_EMAIL: "admin@breakingbud.co.za",
 };
 
 export function signMemberToken(payload: Omit<Session, "exp">): string {

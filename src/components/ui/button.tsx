@@ -11,14 +11,14 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-purple text-white shadow-card hover:bg-purple-dark hover:shadow-card-hover active:scale-[0.98]",
+          "bg-purple text-background shadow-card hover:bg-purple-dark hover:shadow-card-hover active:scale-[0.98]",
         ghost:
-          "border border-line bg-transparent text-ink hover:border-purple hover:text-purple hover:bg-purple/5",
+          "border border-line bg-transparent text-ink hover:border-purple hover:text-purple hover:bg-purple/10",
         outline:
-          "border border-purple bg-transparent text-purple hover:bg-purple hover:text-white",
-        subtle: "bg-purple/10 text-purple hover:bg-purple/15",
+          "border border-purple bg-transparent text-purple hover:bg-purple hover:text-background",
+        subtle: "bg-purple/15 text-purple hover:bg-purple/25",
         plain:
-          "bg-transparent text-ink hover:bg-line/40 normal-case tracking-normal",
+          "bg-transparent text-ink hover:bg-line/60 normal-case tracking-normal",
         danger: "bg-danger text-white hover:bg-danger/90",
         link: "bg-transparent text-purple normal-case tracking-normal underline-offset-4 hover:underline p-0 h-auto",
       },
