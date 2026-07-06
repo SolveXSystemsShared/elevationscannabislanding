@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Sparkles } from "lucide-react";
+import { ShoppingCart, Atom } from "lucide-react";
 import { CATEGORY_LABEL, type Product } from "@/lib/types";
 import { formatZAR } from "@/lib/utils";
 import { useCart } from "@/lib/store";
@@ -68,7 +68,7 @@ export function ProductTile({
               {product.name}
             </p>
           </div>
-          <Sparkles className="h-5 w-5 text-purple opacity-80 group-hover:rotate-12 transition-transform" />
+          <Atom className="h-5 w-5 text-purple opacity-80 group-hover:rotate-12 transition-transform" />
         </div>
       </div>
 

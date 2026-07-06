@@ -1,4 +1,4 @@
-import { Flame, Leaf, Sparkles, Wind } from "lucide-react";
+import { Flame, Leaf, Moon, Wind } from "lucide-react";
 import { JOIN_URL } from "@/lib/constants";
 import { Reveal } from "./reveal";
 
@@ -20,7 +20,7 @@ const CATS = [
     n: "05",
   },
   {
-    icon: Sparkles,
+    icon: Moon,
     label: "Moonsticks",
     desc: "Concentrate-coated, kief-rolled",
     slug: "moonstick",

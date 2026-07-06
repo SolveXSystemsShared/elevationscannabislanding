@@ -1,4 +1,4 @@
-import { Gift, Clock3, Sparkles, ShieldCheck, Lock } from "lucide-react";
+import { Gift, Clock3, BadgeCheck, ShieldCheck, Lock } from "lucide-react";
 import { Reveal } from "./reveal";
 
 const BENEFITS = [
@@ -13,7 +13,7 @@ const BENEFITS = [
     body: "Order any hour. Delivered any day.",
   },
   {
-    icon: Sparkles,
+    icon: BadgeCheck,
     title: "Curated selection",
     body: "Every product is hand-picked, sampled, and approved.",
   },

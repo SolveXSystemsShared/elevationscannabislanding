@@ -50,6 +50,14 @@ export function Reveal({
       return;
     }
 
+    // If the element is already within (or above) the viewport on mount, reveal
+    // immediately so nothing can get stuck hidden before the observer settles.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setVisible(true);
+      if (once) return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -61,7 +69,9 @@ export function Reveal({
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+      // Fire as soon as any pixel enters, with a small pre-trigger margin so
+      // sections never linger blank while partially in view.
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" },
     );
 
     io.observe(el);
