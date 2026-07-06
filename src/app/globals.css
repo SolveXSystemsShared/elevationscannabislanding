@@ -105,6 +105,28 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  /* Offset anchored sections so the fixed nav never covers their headings. */
+  section[id],
+  [id].scroll-anchor {
+    scroll-margin-top: 5.5rem;
+  }
+
+  /* Respect users who prefer reduced motion: no smooth scroll, no reveals. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
   }
 
   body {

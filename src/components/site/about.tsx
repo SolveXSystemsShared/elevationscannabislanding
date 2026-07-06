@@ -1,10 +1,11 @@
-import { Clock, MapPin, Users, Sparkles } from "lucide-react";
+import { Clock, MapPin, Users, FlaskConical } from "lucide-react";
+import { Reveal } from "./reveal";
 
 const STATS = [
   { icon: Clock, value: "24/7", label: "Always-on delivery" },
   { icon: MapPin, value: "Stellenbosch", label: "Western Cape" },
   { icon: Users, value: "Members only", label: "Invite-driven" },
-  { icon: Sparkles, value: "Lab-graded", label: "Every strain" },
+  { icon: FlaskConical, value: "Lab-graded", label: "Every strain" },
 ];
 
 export function About() {
@@ -12,7 +13,7 @@ export function About() {
     <section id="about" className="py-24 sm:py-32 bg-surface">
       <div className="container-wide">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20 items-start">
-          <div>
+          <Reveal direction="right">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-purple font-semibold">
               About Breaking Bud
             </p>
@@ -43,39 +44,40 @@ export function About() {
             <p className="mt-7 font-display uppercase tracking-wide text-xl text-purple">
               The science of a better high.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-2 gap-4">
-            {STATS.map((s) => {
+            {STATS.map((s, i) => {
               const Icon = s.icon;
               return (
-                <div
-                  key={s.label}
-                  className="rounded-card border border-line bg-background p-6 shadow-card hover:shadow-card-hover hover:border-purple/20 transition-all"
-                >
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-purple/20 bg-purple/10 text-purple mb-4">
-                    <Icon className="h-4 w-4" />
+                <Reveal key={s.label} delay={i * 100} direction="left">
+                  <div className="group h-full rounded-card border border-line bg-background p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-purple/20 hover:-translate-y-1">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-purple/20 bg-purple/10 text-purple mb-4 transition-colors duration-300 group-hover:bg-purple group-hover:text-background">
+                      <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                    </div>
+                    <p className="font-display text-2xl font-bold uppercase leading-tight">
+                      {s.value}
+                    </p>
+                    <p className="mt-1 font-mono text-xs uppercase tracking-wide text-muted">
+                      {s.label}
+                    </p>
                   </div>
-                  <p className="font-display text-2xl font-bold uppercase leading-tight">
-                    {s.value}
-                  </p>
-                  <p className="mt-1 font-mono text-xs uppercase tracking-wide text-muted">
-                    {s.label}
-                  </p>
-                </div>
+                </Reveal>
               );
             })}
-            <div className="col-span-2 rounded-card bg-gradient-to-br from-purple to-purple-dark p-7 text-background shadow-card-hover">
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-background/70 font-semibold">
-                Experience Promise
-              </p>
-              <p className="mt-2 font-display text-[26px] uppercase leading-tight font-bold">
-                Every member.<br />Every order. Every time.
-              </p>
-              <p className="mt-2 text-sm text-background/80">
-                Lab-graded cannabis, delivered with care.
-              </p>
-            </div>
+            <Reveal delay={400} direction="left" className="col-span-2">
+              <div className="rounded-card bg-gradient-to-br from-purple to-purple-dark p-7 text-background shadow-card-hover">
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-background/70 font-semibold">
+                  Experience Promise
+                </p>
+                <p className="mt-2 font-display text-[26px] uppercase leading-tight font-bold">
+                  Every member.<br />Every order. Every time.
+                </p>
+                <p className="mt-2 text-sm text-background/80">
+                  Lab-graded cannabis, delivered with care.
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>

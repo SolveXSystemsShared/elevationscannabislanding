@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Reveal } from "./reveal";
 
 const ITEMS = [
   {
@@ -43,7 +44,7 @@ export function FAQ() {
     <section id="faq" className="py-24 sm:py-32 bg-surface">
       <div className="container-wide">
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
-          <div>
+          <Reveal direction="right">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-purple font-semibold">
               FAQ
             </p>
@@ -54,15 +55,17 @@ export function FAQ() {
               Everything you might want to know before joining. If something
               isn&apos;t covered, drop us a note at hello@breakingbud.co.za.
             </p>
-          </div>
-          <Accordion type="single" collapsible className="w-full">
-            {ITEMS.map((item, i) => (
-              <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger>{item.q}</AccordionTrigger>
-                <AccordionContent>{item.a}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          </Reveal>
+          <Reveal delay={120}>
+            <Accordion type="single" collapsible className="w-full">
+              {ITEMS.map((item, i) => (
+                <AccordionItem key={i} value={`item-${i}`}>
+                  <AccordionTrigger>{item.q}</AccordionTrigger>
+                  <AccordionContent>{item.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
         </div>
       </div>
     </section>

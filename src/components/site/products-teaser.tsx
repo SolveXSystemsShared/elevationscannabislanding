@@ -4,6 +4,7 @@ import { Lock } from "lucide-react";
 import { SEED_PRODUCTS } from "@/lib/seed";
 import { ProductTile } from "./product-tile";
 import { JOIN_URL, LOGIN_URL } from "@/lib/constants";
+import { Reveal } from "./reveal";
 
 export function ProductsTeaser() {
   const featured = SEED_PRODUCTS.slice(0, 8);
@@ -13,7 +14,7 @@ export function ProductsTeaser() {
       className="relative py-24 sm:py-32 overflow-hidden bg-background"
     >
       <div className="container-wide">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
           <div className="max-w-2xl">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-purple font-semibold">
               The Table
@@ -29,7 +30,7 @@ export function ProductsTeaser() {
           <Button asChild variant="outline">
             <a href={JOIN_URL}>Unlock the Full Menu</a>
           </Button>
-        </div>
+        </Reveal>
 
         <div className="relative">
           {/* Locked grid — visible but blurred */}
