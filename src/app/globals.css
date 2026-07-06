@@ -2,17 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * BREAKING BUD — chemistry-lab theme.
+ * Toxic green on fume black. Periodic-tile as the master mark.
+ * NOTE: the legacy accent token is still named `purple` in the Tailwind
+ * config so existing markup keeps working — its VALUE is now the toxic
+ * green ramp, and the ramp is inverted (50 = darkest panel, 900 = brightest)
+ * so old light-tint usages read correctly on the dark surface.
+ */
+
 @layer base {
   :root {
-    --background: 250 250 250;
-    --surface: 255 255 255;
-    --ink: 26 26 46;
-    --muted: 107 114 128;
-    --line: 229 231 235;
-    --purple: 108 63 197;
-    --purple-light: 155 114 232;
-    --purple-dark: 61 31 138;
-    --gold: 201 169 97;
+    --fume: 6 7 6;
+    --background: 10 12 10;
+    --surface: 14 20 10;
+    --glass: 20 35 24;
+    --ink: 233 231 221;
+    --muted: 138 146 132;
+    --line: 30 42 24;
+    --toxic-yield: 180 240 0;
+    --toxic-green: 116 195 52;
+    --reaction: 155 232 74;
   }
 
   * {
@@ -30,7 +40,7 @@
   }
 
   ::selection {
-    @apply bg-purple/20 text-purple-dark;
+    @apply bg-purple/30 text-toxic-yield;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
@@ -50,14 +60,15 @@
   }
 
   .h-display {
-    @apply font-display tracking-tight;
+    @apply font-display tracking-tight uppercase;
   }
 
+  /* Frosted lab-glass panel */
   .glass {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(20, 35, 24, 0.45);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(155, 232, 74, 0.1);
   }
 
   .ring-focus {
@@ -65,10 +76,37 @@
   }
 
   .text-gradient-purple {
-    background: linear-gradient(135deg, #9B72E8 0%, #6C3FC5 50%, #3D1F8A 100%);
+    background: linear-gradient(135deg, #b4f000 0%, #74c334 60%, #9be84a 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  /* Soft toxic glow used sparingly on the hero mark and CTAs */
+  .glow-toxic {
+    box-shadow: 0 0 0 1px rgba(180, 240, 0, 0.25),
+      0 0 28px rgba(180, 240, 0, 0.18);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 18px rgba(180, 240, 0, 0.35);
+  }
+
+  /* Periodic-tile motif — the master mark anatomy */
+  .element-tile {
+    @apply relative flex flex-col justify-between rounded-lg border bg-glass p-3 font-display uppercase;
+    border-color: rgba(155, 232, 74, 0.18);
+  }
+
+  /* Diagonal caution band for warnings, age-gates & compliance moments */
+  .caution-band {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #b4f000,
+      #b4f000 12px,
+      #0a0c0a 12px,
+      #0a0c0a 24px
+    );
   }
 }
 
@@ -99,7 +137,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.04;
+    opacity: 0.05;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }

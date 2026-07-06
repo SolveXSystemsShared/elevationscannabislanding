@@ -16,42 +16,59 @@ const config: Config = {
     },
     extend: {
       colors: {
+        /*
+         * BREAKING BUD accent — kept under the legacy `purple` key so existing
+         * markup keeps compiling. The value is the toxic-green ramp, inverted
+         * (50 = darkest lab panel, 900 = brightest) so old light-tint usages
+         * read correctly on the dark surface.
+         */
         purple: {
-          DEFAULT: "#6C3FC5",
-          light: "#9B72E8",
-          dark: "#3D1F8A",
-          50: "#F4EEFB",
-          100: "#E7DBF7",
-          200: "#CFB7EE",
-          300: "#B392E3",
-          400: "#9B72E8",
-          500: "#6C3FC5",
-          600: "#5A33A8",
-          700: "#4A2A8C",
-          800: "#3D1F8A",
-          900: "#2A1463",
+          DEFAULT: "#74C334", // toxic green — links, actions, product tiles
+          light: "#9BE84A", // reaction — highlights / glow
+          dark: "#B4F000", // toxic yield — hero accent, strongest emphasis
+          50: "#0F1A0A",
+          100: "#16240D",
+          200: "#22371A",
+          300: "#33501F",
+          400: "#5A8F2A",
+          500: "#74C334",
+          600: "#86D341",
+          700: "#9BE84A",
+          800: "#B4F000",
+          900: "#C9FF4D",
         },
-        gold: "#C9A961",
-        background: "#FAFAFA",
-        surface: "#FFFFFF",
-        ink: "#1A1A2E",
-        muted: "#6B7280",
-        line: "#E5E7EB",
-        success: "#10B981",
+        // Named brand tokens for new markup
+        toxic: {
+          yield: "#B4F000",
+          green: "#74C334",
+          reaction: "#9BE84A",
+        },
+        fume: "#060706",
+        panel: "#0E140A",
+        glass: "#142318",
+        bone: "#E9E7DD",
+        gold: "#B4F000", // legacy premium accent -> toxic yield
+        background: "#0A0C0A",
+        surface: "#0E140A",
+        ink: "#E9E7DD",
+        muted: "#8A9284",
+        line: "#1E2A18",
+        success: "#74C334",
         warning: "#F59E0B",
         danger: "#EF4444",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-playfair)", "Georgia", "serif"],
+        sans: ["var(--font-plex-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-oswald)", "Impact", "sans-serif"],
+        mono: ["var(--font-plex-mono)", "ui-monospace", "monospace"],
       },
       fontSize: {
-        h1: ["48px", { lineHeight: "1.1", fontWeight: "700" }],
-        h2: ["32px", { lineHeight: "1.2", fontWeight: "600" }],
-        h3: ["22px", { lineHeight: "1.3", fontWeight: "600" }],
+        h1: ["52px", { lineHeight: "1.02", fontWeight: "700", letterSpacing: "-0.01em" }],
+        h2: ["34px", { lineHeight: "1.08", fontWeight: "700" }],
+        h3: ["22px", { lineHeight: "1.25", fontWeight: "600" }],
         body: ["16px", { lineHeight: "1.6", fontWeight: "400" }],
         caption: ["13px", { lineHeight: "1.4", fontWeight: "500" }],
-        button: ["14px", { lineHeight: "1", fontWeight: "600", letterSpacing: "0.04em" }],
+        button: ["14px", { lineHeight: "1", fontWeight: "600", letterSpacing: "0.06em" }],
       },
       borderRadius: {
         card: "12px",
@@ -59,8 +76,8 @@ const config: Config = {
         badge: "6px",
       },
       boxShadow: {
-        card: "0 2px 12px rgba(0,0,0,0.06)",
-        "card-hover": "0 6px 24px rgba(108, 63, 197, 0.12)",
+        card: "0 2px 14px rgba(0,0,0,0.5)",
+        "card-hover": "0 0 28px rgba(180, 240, 0, 0.16)",
       },
       keyframes: {
         "fade-in": {

@@ -9,11 +9,18 @@ import { formatZAR } from "@/lib/utils";
 import { useCart } from "@/lib/store";
 
 const CATEGORY_GRADIENTS: Record<string, string> = {
-  flower: "linear-gradient(135deg, #6C3FC5 0%, #9B72E8 50%, #B392E3 100%)",
-  preroll: "linear-gradient(135deg, #3D1F8A 0%, #6C3FC5 50%, #9B72E8 100%)",
-  moonstick:
-    "linear-gradient(135deg, #1A1A2E 0%, #3D1F8A 40%, #C9A961 100%)",
-  vape: "linear-gradient(135deg, #1A1A2E 0%, #3D1F8A 50%, #6C3FC5 100%)",
+  flower: "linear-gradient(135deg, #0E140A 0%, #142318 50%, #24391A 100%)",
+  preroll: "linear-gradient(135deg, #060706 0%, #142318 55%, #33501F 100%)",
+  moonstick: "linear-gradient(135deg, #0A0C0A 0%, #142318 45%, #2A3A16 100%)",
+  vape: "linear-gradient(135deg, #060706 0%, #0E140A 55%, #22371A 100%)",
+};
+
+// Element symbol + atomic number per category — the periodic-tile motif.
+const CATEGORY_ELEMENT: Record<string, { symbol: string; n: string }> = {
+  flower: { symbol: "Fl", n: "01" },
+  preroll: { symbol: "Pr", n: "05" },
+  moonstick: { symbol: "Mo", n: "07" },
+  vape: { symbol: "Va", n: "09" },
 };
 
 export function ProductTile({
@@ -25,44 +32,43 @@ export function ProductTile({
 }) {
   const add = useCart((s) => s.add);
   const hasBundles = product.bundles && product.bundles.length > 1;
+  const element = CATEGORY_ELEMENT[product.category] ?? { symbol: "Bu", n: "00" };
 
   const Tile = (
-    <div className="group relative overflow-hidden rounded-card border border-line bg-surface shadow-card transition-all hover:shadow-card-hover hover:-translate-y-0.5">
+    <div className="group relative overflow-hidden rounded-card border border-line bg-surface shadow-card transition-all hover:shadow-card-hover hover:-translate-y-0.5 hover:border-purple/30">
       <div
         className="relative aspect-[4/5] overflow-hidden"
         style={{ background: CATEGORY_GRADIENTS[product.category] }}
       >
         <div className="absolute inset-0 grain opacity-40" />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 50%)",
-          }}
-        />
-        <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-          <Badge variant="default" className="bg-white/90 text-purple-dark">
-            {CATEGORY_LABEL[product.category]}
-          </Badge>
-        </div>
+        {/* Periodic-tile motif — atomic number + faint symbol */}
+        <span className="absolute top-3 left-3 font-mono text-[11px] text-purple/70">
+          {element.n}
+        </span>
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 flex items-center justify-center font-display text-[110px] font-bold text-purple/10 group-hover:text-purple/20 transition-colors"
+        >
+          {element.symbol}
+        </span>
         <div className="absolute top-3 right-3">
           <Badge
             variant="default"
-            className="bg-black/30 backdrop-blur text-white border border-white/10"
+            className="bg-fume/70 backdrop-blur text-purple border border-purple/20"
           >
             {product.thc_percent}% THC
           </Badge>
         </div>
-        <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white">
+        <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between text-ink">
           <div>
-            <p className="text-[10px] uppercase tracking-wider opacity-80">
-              {product.grade} · {product.type}
+            <p className="font-mono text-[10px] uppercase tracking-wider text-purple/80">
+              {CATEGORY_LABEL[product.category]} · {product.grade}
             </p>
-            <p className="font-display text-2xl font-bold leading-tight tracking-tight">
+            <p className="font-display text-2xl font-bold uppercase leading-tight tracking-tight">
               {product.name}
             </p>
           </div>
-          <Sparkles className="h-5 w-5 opacity-80 group-hover:rotate-12 transition-transform" />
+          <Sparkles className="h-5 w-5 text-purple opacity-80 group-hover:rotate-12 transition-transform" />
         </div>
       </div>
 
@@ -71,7 +77,7 @@ export function ProductTile({
           {product.effects.slice(0, 3).map((e) => (
             <span
               key={e}
-              className="text-[10px] uppercase tracking-wider text-purple bg-purple/8 rounded-full px-2 py-0.5 font-medium"
+              className="font-mono text-[10px] uppercase tracking-wider text-purple bg-purple/10 rounded-full px-2 py-0.5 font-medium"
             >
               {e}
             </span>

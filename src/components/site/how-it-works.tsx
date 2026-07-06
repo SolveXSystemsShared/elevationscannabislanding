@@ -20,7 +20,7 @@ const STEPS = [
     n: "03",
     title: "Order",
     body:
-      "Place your order, pay securely via Yoco, and we'll deliver discreetly to your door. 24/7, anywhere in Stellenbosch.",
+      "Place your order, pay securely via Yoco, and we'll deliver discreetly to your door. 24/7, anywhere in Midrand.",
   },
 ];
 
@@ -29,11 +29,11 @@ export function HowItWorks() {
     <section id="how-it-works" className="py-24 sm:py-32 bg-background">
       <div className="container-wide">
         <div className="max-w-2xl">
-          <p className="text-[11px] uppercase tracking-[0.22em] text-purple font-semibold">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-purple font-semibold">
             How It Works
           </p>
-          <h2 className="mt-3 font-display text-[34px] sm:text-h2 font-semibold leading-tight tracking-tight text-balance">
-            Three steps. <span className="text-purple">Above the rest.</span>
+          <h2 className="mt-3 font-display uppercase text-[34px] sm:text-h2 font-bold leading-tight tracking-tight text-balance">
+            Three steps. <span className="text-purple">One reaction.</span>
           </h2>
           <p className="mt-3 text-muted text-pretty">
             From sign-up to your door in under an hour. Designed for adults who
@@ -49,10 +49,10 @@ export function HowItWorks() {
                 key={s.n}
                 className="group relative rounded-card border border-line bg-surface p-7 shadow-card transition-all hover:shadow-card-hover hover:-translate-y-1"
               >
-                <div className="absolute right-6 top-6 font-display text-[44px] font-bold leading-none text-purple/8 select-none">
+                <div className="absolute right-6 top-6 font-mono text-[44px] font-bold leading-none text-purple/15 select-none">
                   {s.n}
                 </div>
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-purple/10 text-purple group-hover:bg-purple group-hover:text-white transition-colors">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-purple/20 bg-purple/10 text-purple group-hover:bg-purple group-hover:text-background transition-colors">
                   <Icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-5 font-display text-[22px] font-semibold tracking-tight">

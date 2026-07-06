@@ -1,40 +1,50 @@
-import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Oswald, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { AgeGate } from "@/components/site/age-gate";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
-const inter = Inter({
+const oswald = Oswald({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-oswald",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-plex-sans",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  variable: "--font-plex-mono",
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Elevations247 — Above the Rest",
-    template: "%s · Elevations247",
+    default: "Breaking Bud — The Science of a Better High",
+    template: "%s · Breaking Bud",
   },
   description:
-    "Stellenbosch's exclusive private cannabis members club. Premium cannabis, delivered 24/7. Members only.",
+    "Lab-graded flower, named like elements. A chemistry-lab dispensary — members only, open 24/7 in Midrand.",
   keywords: [
-    "Elevations247",
-    "Stellenbosch cannabis",
+    "Breaking Bud",
+    "Midrand cannabis",
     "private members club",
-    "premium cannabis",
-    "24/7 delivery",
+    "lab-graded flower",
+    "24/7 cannabis",
+    "periodic table cannabis",
   ],
-  metadataBase: new URL("https://elevations247.co.za"),
+  metadataBase: new URL("https://breakingbud.co.za"),
   openGraph: {
-    title: "Elevations247 — Above the Rest",
+    title: "Breaking Bud — The Science of a Better High",
     description:
-      "Premium cannabis. Delivered 24/7. Stellenbosch's exclusive private members club.",
+      "Lab-graded flower, named like elements. Members only, open 24/7 in Midrand.",
     type: "website",
     locale: "en_ZA",
   },
@@ -44,11 +54,18 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#0A0C0A",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      className={`${plexSans.variable} ${oswald.variable} ${plexMono.variable} bg-background`}
+    >
       <body className="min-h-screen bg-background text-ink antialiased">
         <Toaster>
           <AgeGate />
