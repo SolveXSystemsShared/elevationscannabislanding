@@ -39,15 +39,15 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex bg-background">
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-30 w-64 bg-purple-dark text-white transition-transform lg:translate-x-0 lg:static lg:flex flex-col",
+          "fixed inset-y-0 left-0 z-30 w-64 bg-fume text-ink border-r border-line transition-transform lg:translate-x-0 lg:static lg:flex flex-col",
           mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
         )}
       >
-        <div className="p-6 border-b border-white/10">
+        <div className="p-6 border-b border-line">
           <Link href="/admin">
-            <Logo variant="light" />
+            <Logo />
           </Link>
-          <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-purple-light font-semibold">
+          <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-purple font-semibold">
             Admin Console
           </p>
         </div>
@@ -65,8 +65,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 className={cn(
                   "flex items-center gap-3 px-3 py-2.5 rounded-btn text-sm font-medium transition-colors",
                   active
-                    ? "bg-white/10 text-white"
-                    : "text-white/70 hover:bg-white/5 hover:text-white",
+                    ? "bg-purple/15 text-purple border border-purple/25"
+                    : "text-muted hover:bg-glass hover:text-ink",
                 )}
               >
                 <Icon className="h-4 w-4" /> {n.label}
@@ -74,10 +74,10 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             );
           })}
         </nav>
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t border-line">
           <button
             onClick={logout}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-btn text-sm font-medium text-white/70 hover:bg-white/5 hover:text-white w-full"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-btn text-sm font-medium text-muted hover:bg-glass hover:text-ink w-full"
           >
             <LogOut className="h-4 w-4" /> Sign out
           </button>
@@ -102,7 +102,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <Badge variant="muted" className="font-mono">
             ADMIN
           </Badge>
-          <span className="ml-3">© Elevations247 · POPIA-compliant</span>
+          <span className="ml-3 font-mono">© Breaking Bud · POPIA-compliant</span>
         </footer>
       </div>
     </div>
@@ -121,7 +121,7 @@ export function AdminPageHeader({
   return (
     <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
       <div>
-        <h1 className="font-display text-h2 font-semibold leading-tight tracking-tight">
+        <h1 className="font-display uppercase text-h2 font-bold leading-tight tracking-tight">
           {title}
         </h1>
         {description && <p className="mt-1 text-muted">{description}</p>}

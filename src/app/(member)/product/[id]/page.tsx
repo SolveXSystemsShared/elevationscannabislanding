@@ -15,10 +15,16 @@ import { ArrowLeft, Minus, Plus, ShoppingCart, Sparkles, Leaf } from "lucide-rea
 
 const fetcher = (u: string) => fetch(u).then((r) => r.json());
 const GRADIENTS: Record<string, string> = {
-  flower: "linear-gradient(135deg, #6C3FC5 0%, #9B72E8 50%, #B392E3 100%)",
-  preroll: "linear-gradient(135deg, #3D1F8A 0%, #6C3FC5 50%, #9B72E8 100%)",
-  moonstick: "linear-gradient(135deg, #1A1A2E 0%, #3D1F8A 40%, #C9A961 100%)",
-  vape: "linear-gradient(135deg, #1A1A2E 0%, #3D1F8A 50%, #6C3FC5 100%)",
+  flower: "linear-gradient(135deg, #0E140A 0%, #142318 50%, #24391A 100%)",
+  preroll: "linear-gradient(135deg, #060706 0%, #142318 55%, #33501F 100%)",
+  moonstick: "linear-gradient(135deg, #0A0C0A 0%, #142318 45%, #2A3A16 100%)",
+  vape: "linear-gradient(135deg, #060706 0%, #0E140A 55%, #22371A 100%)",
+};
+const ELEMENT: Record<string, string> = {
+  flower: "Fl",
+  preroll: "Pr",
+  moonstick: "Mo",
+  vape: "Va",
 };
 
 export default function ProductPage() {
@@ -89,31 +95,37 @@ export default function ProductPage() {
             className="absolute inset-0"
             style={{
               backgroundImage:
-                "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.3), transparent 50%)",
+                "radial-gradient(circle at 50% 30%, rgba(180,240,0,0.12), transparent 55%)",
             }}
           />
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 flex items-center justify-center font-display text-[220px] font-bold text-purple/10"
+          >
+            {ELEMENT[p.category] ?? "Bu"}
+          </span>
           <div className="absolute top-5 left-5 flex flex-wrap gap-1.5">
-            <Badge className="bg-white/95 text-purple-dark">
+            <Badge className="bg-purple/15 text-purple border border-purple/25">
               {CATEGORY_LABEL[p.category]}
             </Badge>
-            <Badge className="bg-black/30 text-white border border-white/15 backdrop-blur">
+            <Badge className="bg-fume/70 text-purple border border-purple/20 backdrop-blur">
               {p.thc_percent}% THC
             </Badge>
             {p.cbd_percent !== undefined && p.cbd_percent > 0 && (
-              <Badge className="bg-black/30 text-white border border-white/15 backdrop-blur">
+              <Badge className="bg-fume/70 text-purple border border-purple/20 backdrop-blur">
                 {p.cbd_percent}% CBD
               </Badge>
             )}
           </div>
-          <div className="absolute bottom-6 left-6 right-6 text-white">
-            <p className="text-[11px] uppercase tracking-wider opacity-70">
+          <div className="absolute bottom-6 left-6 right-6 text-ink">
+            <p className="font-mono text-[11px] uppercase tracking-wider text-purple/80">
               {p.grade} · {p.type}
             </p>
-            <p className="font-display text-5xl font-bold leading-tight tracking-tight mt-1">
+            <p className="font-display uppercase text-5xl font-bold leading-tight tracking-tight mt-1">
               {p.name}
             </p>
           </div>
-          <Sparkles className="absolute top-6 right-6 h-6 w-6 text-white/70" />
+          <Sparkles className="absolute top-6 right-6 h-6 w-6 text-purple/70" />
         </div>
 
         <div>
@@ -281,7 +293,7 @@ export default function ProductPage() {
 
           <p className="mt-4 text-xs text-muted text-pretty">
             Discreet packaging. Member ID required at delivery. 24/7 anywhere in
-            Stellenbosch.
+            Midrand.
           </p>
         </div>
       </div>

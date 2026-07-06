@@ -41,7 +41,7 @@ export default function CartPage() {
                 key={key}
                 className="flex gap-4 rounded-card border border-line bg-surface p-4 shadow-card"
               >
-                <div className="h-24 w-24 shrink-0 rounded-btn bg-gradient-to-br from-purple to-purple-dark flex items-center justify-center text-white font-display text-3xl font-bold">
+                <div className="h-24 w-24 shrink-0 rounded-btn bg-gradient-to-br from-purple to-purple-dark flex items-center justify-center text-background font-display text-3xl font-bold">
                   {i.name.split(" ").map((w) => w[0]).join("").slice(0, 2)}
                 </div>
                 <div className="flex-1 min-w-0">

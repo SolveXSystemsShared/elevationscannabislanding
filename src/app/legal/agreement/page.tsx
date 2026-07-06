@@ -16,7 +16,7 @@ export default function AgreementPage() {
         </h1>
         <div className="mt-8 space-y-6 text-ink/80 leading-relaxed">
           <Clause n="01" title="Nature of the Club">
-            Elevations247 is a private members club, not a retail outlet. Cannabis
+            Breaking Bud is a private members club, not a retail outlet. Cannabis
             exchanged between members is facilitated as club credits applied
             toward the communal growing and acquisition of cannabis for personal
             use by adult members, as permitted under the Constitutional Court
@@ -38,19 +38,19 @@ export default function AgreementPage() {
             all applicable laws; and to use the platform in good faith.
           </Clause>
           <Clause n="05" title="Termination">
-            Elevations247 reserves the right to suspend or terminate any
+            Breaking Bud reserves the right to suspend or terminate any
             membership at its sole discretion, without notice, if it reasonably
             believes a member is in breach of any of these terms.
           </Clause>
           <Clause n="06" title="Liability Limitation">
-            Elevations247 accepts no liability for loss, injury or damage arising
+            Breaking Bud accepts no liability for loss, injury or damage arising
             from the use of cannabis by its members. Members consume at their own
             risk.
           </Clause>
           <Clause n="07" title="Governing Law">
             This agreement is governed by the laws of the Republic of South
             Africa. Any disputes shall be subject to the jurisdiction of the
-            courts of the Western Cape.
+            courts of Gauteng.
           </Clause>
         </div>
       </main>

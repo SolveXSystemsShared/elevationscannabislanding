@@ -15,7 +15,7 @@ export function CartDrawer() {
   return (
     <Dialog.Root open={cart.isOpen} onOpenChange={(o) => (o ? cart.open() : cart.close())}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-purple-dark/40 backdrop-blur-sm data-[state=open]:animate-fade-in-slow" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-fume/85 backdrop-blur-sm data-[state=open]:animate-fade-in-slow" />
         <Dialog.Content
           className={cn(
             "fixed right-0 top-0 bottom-0 z-50 flex flex-col w-full sm:max-w-md bg-surface shadow-card-hover",
@@ -23,7 +23,7 @@ export function CartDrawer() {
           )}
         >
           <header className="flex items-center justify-between p-5 border-b border-line">
-            <Dialog.Title className="font-display text-xl font-semibold">
+            <Dialog.Title className="font-display uppercase text-xl font-bold">
               Your cart
             </Dialog.Title>
             <Dialog.Close className="rounded-full p-1.5 text-muted hover:bg-line/40 hover:text-ink">
@@ -55,7 +55,7 @@ export function CartDrawer() {
                     key={key}
                     className="flex gap-3 rounded-card border border-line bg-background p-3"
                   >
-                    <div className="h-20 w-20 shrink-0 rounded-btn bg-gradient-to-br from-purple to-purple-dark flex items-center justify-center text-white font-display text-2xl font-bold shadow-card">
+                    <div className="h-20 w-20 shrink-0 rounded-btn border border-purple/30 bg-glass flex items-center justify-center text-purple text-glow font-display text-2xl font-bold shadow-card">
                       {item.name.split(" ").map((w) => w[0]).join("").slice(0, 2)}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -119,7 +119,7 @@ export function CartDrawer() {
                 <span>{formatZAR(cart.totalAmount())}</span>
               </div>
               <p className="text-xs text-muted">
-                Delivery is free for members in Stellenbosch. Final billing happens
+                Delivery is free for members in Midrand. Final billing happens
                 at secure Yoco checkout.
               </p>
               <Button asChild size="lg" className="w-full">

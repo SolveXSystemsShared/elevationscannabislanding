@@ -75,7 +75,7 @@ export function MemberNav() {
           >
             <ShoppingCart className="h-5 w-5" />
             {count > 0 && (
-              <span className="absolute -top-1 -right-1 inline-flex h-5 min-w-[20px] px-1 items-center justify-center rounded-full bg-purple text-white text-[10px] font-bold">
+              <span className="absolute -top-1 -right-1 inline-flex h-5 min-w-[20px] px-1 items-center justify-center rounded-full bg-purple text-background text-[10px] font-bold">
                 {count}
               </span>
             )}

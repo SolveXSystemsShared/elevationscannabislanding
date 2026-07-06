@@ -66,11 +66,11 @@ export default function StorePage() {
         <div className="container-wide pt-10 pb-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.22em] text-purple font-semibold">
-                The Menu
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-purple font-semibold">
+                The Table
               </p>
-              <h1 className="mt-2 font-display text-[34px] sm:text-h2 font-semibold tracking-tight">
-                Curated, in stock, ready to deliver.
+              <h1 className="mt-2 font-display uppercase text-[34px] sm:text-h2 font-bold tracking-tight">
+                Lab-graded, in stock, ready to deliver.
               </h1>
             </div>
             <div className="relative w-full md:w-72">
@@ -94,7 +94,7 @@ export default function StorePage() {
                   className={cn(
                     "shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all",
                     active
-                      ? "bg-purple text-white shadow-card"
+                      ? "bg-purple text-background shadow-card"
                       : "bg-surface border border-line text-ink hover:border-purple/30 hover:text-purple",
                   )}
                 >

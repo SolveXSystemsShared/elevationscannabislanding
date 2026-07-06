@@ -79,7 +79,7 @@ export default function ReportsPage() {
                 className={cn(
                   "px-3 py-1.5 rounded-btn text-xs font-medium transition-colors",
                   range === r.v
-                    ? "bg-purple text-white"
+                    ? "bg-purple text-background"
                     : "border border-line text-ink hover:border-purple/30",
                 )}
               >

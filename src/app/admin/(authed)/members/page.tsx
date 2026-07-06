@@ -70,7 +70,7 @@ export default function MembersAdminPage() {
                 className={
                   "px-3 py-1.5 rounded-btn text-xs font-medium transition-colors " +
                   (filter === f
-                    ? "bg-purple text-white"
+                    ? "bg-purple text-background"
                     : "border border-line text-ink hover:border-purple/30")
                 }
               >

@@ -107,7 +107,7 @@ export default function OrderDetailPage() {
                         className={cn(
                           "h-9 w-9 rounded-full flex items-center justify-center text-xs font-semibold border-2 transition-colors",
                           done
-                            ? "bg-purple text-white border-purple"
+                            ? "bg-purple text-background border-purple"
                             : "bg-surface text-muted border-line",
                           active && "ring-4 ring-purple/15",
                         )}
@@ -152,7 +152,7 @@ export default function OrderDetailPage() {
                   key={i.product_id}
                   className="flex items-center gap-3 text-sm"
                 >
-                  <div className="h-12 w-12 shrink-0 rounded-btn bg-gradient-to-br from-purple to-purple-dark flex items-center justify-center text-white font-display text-base font-bold">
+                  <div className="h-12 w-12 shrink-0 rounded-btn bg-gradient-to-br from-purple to-purple-dark flex items-center justify-center text-background font-display text-base font-bold">
                     {i.name.split(" ").map((w) => w[0]).join("").slice(0, 2)}
                   </div>
                   <div className="flex-1 min-w-0">

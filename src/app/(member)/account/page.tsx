@@ -26,7 +26,7 @@ export default function AccountPage() {
     email: "",
     address_street: "",
     address_suburb: "",
-    address_city: "Stellenbosch",
+    address_city: "Midrand",
   });
 
   React.useEffect(() => {
@@ -154,7 +154,7 @@ export default function AccountPage() {
           <section className="rounded-card border border-line bg-surface p-6 shadow-card">
             <h2 className="font-display text-lg font-semibold">Privacy & data</h2>
             <p className="mt-2 text-sm text-muted text-pretty">
-              Elevations247 handles your data under POPIA. You may request access
+              Breaking Bud handles your data under POPIA. You may request access
               to, correction of, or deletion of your information at any time.
             </p>
             <div className="mt-4 flex items-start gap-2 text-xs text-muted">

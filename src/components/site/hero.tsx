@@ -147,19 +147,28 @@ export function Hero() {
         <source src="/assets/video/landing-bg.mp4" type="video/mp4" />
       </video>
 
-      {/* Fume-black wash overlay */}
+      {/* Fume-black wash overlay — kept heavy so legacy branding in the
+          background video is not legible under the rebrand. */}
       <div
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(180deg, rgba(6,7,6,0.75) 0%, rgba(6,7,6,0.55) 30%, rgba(6,7,6,0.92) 100%)",
+            "linear-gradient(180deg, rgba(6,7,6,0.92) 0%, rgba(6,7,6,0.86) 30%, rgba(6,7,6,0.97) 100%)",
         }}
       />
       <div
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 25%, rgba(180,240,0,0.14), transparent 60%)",
+            "radial-gradient(ellipse at 50% 25%, rgba(116,195,52,0.18), transparent 55%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 opacity-30"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(0deg, rgba(155,232,74,0.04) 0px, rgba(155,232,74,0.04) 1px, transparent 1px, transparent 40px), repeating-linear-gradient(90deg, rgba(155,232,74,0.04) 0px, rgba(155,232,74,0.04) 1px, transparent 1px, transparent 40px)",
         }}
       />
       <div className="absolute inset-0 -z-10 grain pointer-events-none" />
