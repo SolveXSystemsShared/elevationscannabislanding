@@ -16,7 +16,7 @@ export default function CartPage() {
         <div className="mx-auto h-20 w-20 rounded-full bg-purple/8 flex items-center justify-center">
           <ShoppingBag className="h-9 w-9 text-purple/40" />
         </div>
-        <h1 className="mt-6 font-display text-h2 font-semibold">Your cart is empty.</h1>
+        <h1 className="mt-6 font-display uppercase text-h2 font-bold">Your cart is empty.</h1>
         <p className="mt-2 text-muted">Browse the store to add something curated.</p>
         <Button asChild className="mt-6">
           <Link href="/store">Open the store</Link>
@@ -27,7 +27,7 @@ export default function CartPage() {
 
   return (
     <div className="container-wide py-10 sm:py-14">
-      <h1 className="font-display text-h2 font-semibold tracking-tight">Your cart</h1>
+      <h1 className="font-display uppercase text-h2 font-bold tracking-tight">Your cart</h1>
       <p className="text-muted mt-1">
         {cart.items.length} item{cart.items.length === 1 ? "" : "s"}
       </p>
@@ -117,7 +117,7 @@ export default function CartPage() {
             </Link>
           </Button>
           <p className="mt-3 text-xs text-muted text-pretty">
-            Secure payment via Yoco. Delivery within Stellenbosch only.
+            Secure payment via Yoco. Delivery within Midrand only.
           </p>
         </aside>
       </div>

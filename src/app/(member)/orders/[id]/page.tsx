@@ -200,7 +200,7 @@ export default function OrderDetailPage() {
           <Separator />
           <div className="space-y-3">
             <Button asChild variant="ghost" className="w-full">
-              <a href="mailto:hello@elevations247.co.za">
+              <a href="mailto:hello@breakingbud.co.za">
                 <MessageSquare className="h-4 w-4" /> Contact support
               </a>
             </Button>

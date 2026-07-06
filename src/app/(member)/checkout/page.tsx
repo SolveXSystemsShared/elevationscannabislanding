@@ -20,7 +20,7 @@ export default function CheckoutPage() {
   const { toast } = useToast();
   const [submitting, setSubmitting] = React.useState(false);
   const [member, setMember] = React.useState<Member | null>(null);
-  const [address, setAddress] = React.useState({ street: "", suburb: "", city: "Stellenbosch" });
+  const [address, setAddress] = React.useState({ street: "", suburb: "", city: "Midrand" });
 
   React.useEffect(() => {
     fetch("/api/member/profile")
@@ -137,7 +137,7 @@ export default function CheckoutPage() {
                     onChange={(e) => setAddress((a) => ({ ...a, suburb: e.target.value }))}
                   />
                 </Field>
-                <Field label="City" required hint="Stellenbosch only">
+                <Field label="City" required hint="Midrand only">
                   <Input value={address.city} readOnly />
                 </Field>
               </div>

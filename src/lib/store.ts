@@ -100,7 +100,7 @@ export const useCart = create<CartState>()(
       totalItems: () => get().items.reduce((sum, i) => sum + i.qty, 0),
       totalAmount: () => get().items.reduce((sum, i) => sum + i.qty * i.unit_price, 0),
     }),
-    { name: "elevations-cart" },
+    { name: "breakingbud-cart" },
   ),
 );
 
@@ -148,6 +148,6 @@ export const useSession = create<SessionState>()(
           isAdmin: false,
         }),
     }),
-    { name: "elevations-session" },
+    { name: "breakingbud-session" },
   ),
 );

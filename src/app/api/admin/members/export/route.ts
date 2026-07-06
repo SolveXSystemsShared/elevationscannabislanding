@@ -33,7 +33,7 @@ export async function GET() {
   return new Response(csv, {
     headers: {
       "content-type": "text/csv; charset=utf-8",
-      "content-disposition": `attachment; filename="elevations-members-${new Date().toISOString().slice(0, 10)}.csv"`,
+      "content-disposition": `attachment; filename="breakingbud-members-${new Date().toISOString().slice(0, 10)}.csv"`,
     },
   });
 }

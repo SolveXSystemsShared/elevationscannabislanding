@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
         toast({ kind: "error", title: data.message || "Could not sign in" });
         return;
       }
-      setAdmin("admin@elevations247.co.za");
+      setAdmin("admin@breakingbud.co.za");
       toast({ kind: "success", title: "Signed in", description: "Welcome back, admin." });
       router.push("/admin");
     } finally {

@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
 
 const fetcher = (u: string) => fetch(u).then((r) => r.json());
 
-const COLORS = ["#6C3FC5", "#9B72E8", "#3D1F8A", "#C9A961", "#B392E3"];
+const COLORS = ["#74C334", "#B4F000", "#9BE84A", "#5A8F2A", "#C9FF4D"];
 
 const RANGES = [
   { v: "today", label: "Today" },
@@ -115,22 +115,22 @@ export default function ReportsPage() {
                 <AreaChart data={days}>
                   <defs>
                     <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#6C3FC5" stopOpacity={0.4} />
-                      <stop offset="100%" stopColor="#6C3FC5" stopOpacity={0} />
+                      <stop offset="0%" stopColor="#74C334" stopOpacity={0.4} />
+                      <stop offset="100%" stopColor="#74C334" stopOpacity={0} />
                     </linearGradient>
                     <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#C9A961" stopOpacity={0.3} />
-                      <stop offset="100%" stopColor="#C9A961" stopOpacity={0} />
+                      <stop offset="0%" stopColor="#B4F000" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="#B4F000" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid stroke="#E5E7EB" strokeDasharray="3 3" />
+                  <CartesianGrid stroke="#1E2A18" strokeDasharray="3 3" />
                   <XAxis dataKey="date" tick={{ fontSize: 12 }} />
                   <YAxis tick={{ fontSize: 12 }} />
                   <Tooltip />
                   <Area
                     type="monotone"
                     dataKey="orders"
-                    stroke="#6C3FC5"
+                    stroke="#74C334"
                     strokeWidth={2}
                     fill="url(#g1)"
                     name="Orders"
@@ -138,7 +138,7 @@ export default function ReportsPage() {
                   <Area
                     type="monotone"
                     dataKey="members"
-                    stroke="#C9A961"
+                    stroke="#B4F000"
                     strokeWidth={2}
                     fill="url(#g2)"
                     name="New members"
@@ -187,14 +187,14 @@ export default function ReportsPage() {
             <ChartFrame>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={catData}>
-                  <CartesianGrid stroke="#E5E7EB" strokeDasharray="3 3" />
+                  <CartesianGrid stroke="#1E2A18" strokeDasharray="3 3" />
                   <XAxis dataKey="name" tick={{ fontSize: 12 }} />
                   <YAxis
                     tick={{ fontSize: 12 }}
                     tickFormatter={(v) => `R${v / 1000}k`}
                   />
                   <Tooltip formatter={(v) => formatZAR(Number(v))} />
-                  <Bar dataKey="value" radius={[6, 6, 0, 0]} fill="#6C3FC5" />
+                  <Bar dataKey="value" radius={[6, 6, 0, 0]} fill="#74C334" />
                 </BarChart>
               </ResponsiveContainer>
             </ChartFrame>

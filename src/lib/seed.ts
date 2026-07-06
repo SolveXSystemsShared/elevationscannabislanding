@@ -3,8 +3,8 @@ import type { Product, Member, Order, Bundle } from "./types";
 const NOW = new Date("2026-04-27T08:00:00Z").toISOString();
 
 /**
- * Real Elevations247 catalogue, sourced from:
- *   SX-2026-04-ELV-PRICING-v0.1 (Pricing + Stock + Margin sheets)
+ * Real Breaking Bud catalogue, sourced from:
+ *   SX-2026-04-BB-PRICING-v0.1 (Pricing + Stock + Margin sheets)
  *   Stock-on-hand as at 27 April 2026.
  *
  * Bundle ladders (per pricing sheet):
@@ -453,8 +453,8 @@ export const SEED_MEMBERS: Member[] = [
     email: "sasha@example.co.za",
     id_number: "9504125800087",
     address_street: "12 Dorp Street",
-    address_suburb: "Stellenbosch Central",
-    address_city: "Stellenbosch",
+    address_suburb: "Halfway House",
+    address_city: "Midrand",
     referral_source: "Instagram",
     status: "active",
     agreed_to_terms: true,
@@ -470,8 +470,8 @@ export const SEED_MEMBERS: Member[] = [
     email: "liam@example.co.za",
     id_number: "9912055100089",
     address_street: "47 Banhoek Road",
-    address_suburb: "Mostertsdrift",
-    address_city: "Stellenbosch",
+    address_suburb: "Vorna Valley",
+    address_city: "Midrand",
     referral_source: "Word of Mouth",
     status: "active",
     agreed_to_terms: true,
@@ -487,8 +487,8 @@ export const SEED_MEMBERS: Member[] = [
     email: "nadia@example.co.za",
     id_number: "9707085800086",
     address_street: "8 Bird Street",
-    address_suburb: "Stellenbosch Central",
-    address_city: "Stellenbosch",
+    address_suburb: "Halfway House",
+    address_city: "Midrand",
     referral_source: "WhatsApp",
     status: "active",
     agreed_to_terms: true,
@@ -504,8 +504,8 @@ export const SEED_MEMBERS: Member[] = [
     email: "kabelo@example.co.za",
     id_number: "9608225800082",
     address_street: "21 Helderberg Street",
-    address_suburb: "Die Boord",
-    address_city: "Stellenbosch",
+    address_suburb: "Noordwyk",
+    address_city: "Midrand",
     referral_source: "Instagram",
     status: "active",
     agreed_to_terms: true,
@@ -521,8 +521,8 @@ export const SEED_MEMBERS: Member[] = [
     email: "robyn@example.co.za",
     id_number: "9802145800082",
     address_street: "5 Plein Street",
-    address_suburb: "Universiteitsoord",
-    address_city: "Stellenbosch",
+    address_suburb: "Carlswald",
+    address_city: "Midrand",
     referral_source: "Other",
     status: "active",
     agreed_to_terms: true,
@@ -534,14 +534,14 @@ export const SEED_MEMBERS: Member[] = [
 export const SEED_ORDERS: Order[] = [
   {
     id: "o_001",
-    reference: "ELV-00247",
+    reference: "BB-00247",
     member_id: "m_001",
     member_name: "Sasha Botha",
     status: "out_for_delivery",
     delivery_address: {
       street: "12 Dorp Street",
-      suburb: "Stellenbosch Central",
-      city: "Stellenbosch",
+      suburb: "Halfway House",
+      city: "Midrand",
     },
     items: [
       { product_id: "p_blue_pave", name: "Blue Pave · 2g", qty: 1, unit_price: 325 },
@@ -555,14 +555,14 @@ export const SEED_ORDERS: Order[] = [
   },
   {
     id: "o_002",
-    reference: "ELV-00246",
+    reference: "BB-00246",
     member_id: "m_002",
     member_name: "Liam van der Merwe",
     status: "delivered",
     delivery_address: {
       street: "47 Banhoek Road",
-      suburb: "Mostertsdrift",
-      city: "Stellenbosch",
+      suburb: "Vorna Valley",
+      city: "Midrand",
     },
     items: [
       { product_id: "p_malawi_gold", name: "Malawi Gold · 3g", qty: 1, unit_price: 265 },
@@ -574,14 +574,14 @@ export const SEED_ORDERS: Order[] = [
   },
   {
     id: "o_003",
-    reference: "ELV-00245",
+    reference: "BB-00245",
     member_id: "m_003",
     member_name: "Nadia Pretorius",
     status: "packing",
     delivery_address: {
       street: "8 Bird Street",
-      suburb: "Stellenbosch Central",
-      city: "Stellenbosch",
+      suburb: "Halfway House",
+      city: "Midrand",
     },
     items: [
       { product_id: "p_ms_indoor", name: "Indoor Moonstick · 2 units", qty: 1, unit_price: 370 },
@@ -594,14 +594,14 @@ export const SEED_ORDERS: Order[] = [
   },
   {
     id: "o_004",
-    reference: "ELV-00244",
+    reference: "BB-00244",
     member_id: "m_004",
     member_name: "Kabelo Dlamini",
     status: "confirmed",
     delivery_address: {
       street: "21 Helderberg Street",
-      suburb: "Die Boord",
-      city: "Stellenbosch",
+      suburb: "Noordwyk",
+      city: "Midrand",
     },
     items: [
       { product_id: "p_vape_reina", name: "Reina Vape", qty: 1, unit_price: 750 },
@@ -613,14 +613,14 @@ export const SEED_ORDERS: Order[] = [
   },
   {
     id: "o_005",
-    reference: "ELV-00243",
+    reference: "BB-00243",
     member_id: "m_005",
     member_name: "Robyn Müller",
     status: "delivered",
     delivery_address: {
       street: "5 Plein Street",
-      suburb: "Universiteitsoord",
-      city: "Stellenbosch",
+      suburb: "Carlswald",
+      city: "Midrand",
     },
     items: [
       { product_id: "p_higher_primate", name: "Higher Primate · 2g", qty: 1, unit_price: 185 },
