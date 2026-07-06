@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils";
  */
 export function Logo({
   className,
-  variant = "dark",
   showWordmark = true,
 }: {
   className?: string;
+  /** Accepted for API compatibility; theming is handled via CSS tokens. */
   variant?: "dark" | "light";
   showWordmark?: boolean;
 }) {
