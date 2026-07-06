@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Oswald, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { AgeGate } from "@/components/site/age-gate";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -31,10 +32,10 @@ export const metadata: Metadata = {
     template: "%s · Breaking Bud",
   },
   description:
-    "Lab-graded flower, named like elements. A chemistry-lab dispensary — members only, open 24/7 in Midrand.",
+    "Lab-graded flower, named like elements. A chemistry-lab dispensary — members only, open 24/7 in Stellenbosch.",
   keywords: [
     "Breaking Bud",
-    "Midrand cannabis",
+    "Stellenbosch cannabis",
     "private members club",
     "lab-graded flower",
     "24/7 cannabis",
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Breaking Bud — The Science of a Better High",
     description:
-      "Lab-graded flower, named like elements. Members only, open 24/7 in Midrand.",
+      "Lab-graded flower, named like elements. Members only, open 24/7 in Stellenbosch.",
     type: "website",
     locale: "en_ZA",
   },
@@ -55,7 +56,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0C0A",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F6F7F2" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0C0A" },
+  ],
 };
 
 export default function RootLayout({
@@ -64,13 +68,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${plexSans.variable} ${oswald.variable} ${plexMono.variable} bg-background`}
     >
       <body className="min-h-screen bg-background text-ink antialiased">
-        <Toaster>
-          <AgeGate />
-          {children}
-        </Toaster>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <Toaster>
+            <AgeGate />
+            {children}
+          </Toaster>
+        </ThemeProvider>
       </body>
     </html>
   );

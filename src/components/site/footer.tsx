@@ -114,7 +114,7 @@ export function Footer() {
             </li>
           </ul>
           <p className="pt-2 font-mono text-xs text-muted leading-relaxed">
-            Midrand, Gauteng · 24/7 delivery
+            Stellenbosch, Western Cape · 24/7 delivery
           </p>
         </div>
       </div>
@@ -123,7 +123,7 @@ export function Footer() {
         <div className="container-wide py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-muted">
           <p>
             © {new Date().getFullYear()} Breaking Bud. All rights reserved. Private
-            Members Club. Midrand, Gauteng.
+            Members Club. Stellenbosch, Western Cape.
           </p>
           <p>For adults 18 and older only. Cannabis for personal use. Private club members only.</p>
         </div>

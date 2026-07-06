@@ -112,7 +112,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate overflow-hidden text-ink min-h-[100svh] flex items-center bg-fume"
+      className="surface-dark relative isolate overflow-hidden text-ink min-h-[100svh] flex items-center bg-fume"
     >
       {/* Fallback gradient — visible immediately while video buffers, and as
           a permanent fallback if autoplay is blocked or the file can't load. */}
@@ -179,7 +179,7 @@ export function Hero() {
           <div className="max-w-2xl animate-fade-in">
             <div className="inline-flex items-center gap-2 rounded-full border border-purple/30 bg-purple/10 backdrop-blur-md px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.2em] text-purple-light">
               <Circle className="h-2 w-2 fill-success text-success animate-pulse-soft" />
-              Open now · 24/7 in Midrand
+              Open now · 24/7 in Stellenbosch
             </div>
 
             <p className="mt-6 font-display text-sm uppercase tracking-[0.35em] text-muted">
@@ -221,7 +221,7 @@ export function Hero() {
               </div>
               <div className="h-8 w-px bg-line" />
               <div>
-                <p className="text-ink font-semibold">Midrand</p>
+                <p className="text-ink font-semibold">Stellenbosch</p>
                 <p>Members only</p>
               </div>
               <div className="h-8 w-px bg-line" />

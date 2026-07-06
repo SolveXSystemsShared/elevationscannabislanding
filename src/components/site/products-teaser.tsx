@@ -10,11 +10,7 @@ export function ProductsTeaser() {
   return (
     <section
       id="products"
-      className="relative py-24 sm:py-32 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, #0A0C0A 0%, #0E140A 50%, #0A0C0A 100%)",
-      }}
+      className="relative py-24 sm:py-32 overflow-hidden bg-background"
     >
       <div className="container-wide">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">

@@ -28,7 +28,7 @@ export function AgeGate() {
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-fume/95 backdrop-blur-md p-6 animate-fade-in-slow"
+      className="surface-dark fixed inset-0 z-[200] flex items-center justify-center bg-fume/95 backdrop-blur-md p-6 animate-fade-in-slow"
       role="dialog"
       aria-modal="true"
       aria-labelledby="age-gate-title"

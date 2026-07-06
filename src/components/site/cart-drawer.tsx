@@ -119,7 +119,7 @@ export function CartDrawer() {
                 <span>{formatZAR(cart.totalAmount())}</span>
               </div>
               <p className="text-xs text-muted">
-                Delivery is free for members in Midrand. Final billing happens
+                Delivery is free for members in Stellenbosch. Final billing happens
                 at secure Yoco checkout.
               </p>
               <Button asChild size="lg" className="w-full">

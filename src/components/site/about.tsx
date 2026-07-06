@@ -2,7 +2,7 @@ import { Clock, MapPin, Users, Sparkles } from "lucide-react";
 
 const STATS = [
   { icon: Clock, value: "24/7", label: "Always-on delivery" },
-  { icon: MapPin, value: "Midrand", label: "Gauteng" },
+  { icon: MapPin, value: "Stellenbosch", label: "Western Cape" },
   { icon: Users, value: "Members only", label: "Invite-driven" },
   { icon: Sparkles, value: "Lab-graded", label: "Every strain" },
 ];

@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "./logo";
+import { ThemeToggle } from "./theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import {
@@ -39,7 +40,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex bg-background">
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-30 w-64 bg-fume text-ink border-r border-line transition-transform lg:translate-x-0 lg:static lg:flex flex-col",
+          "surface-dark fixed inset-y-0 left-0 z-30 w-64 bg-fume text-ink border-r border-line transition-transform lg:translate-x-0 lg:static lg:flex flex-col",
           mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
         )}
       >
@@ -74,13 +75,14 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             );
           })}
         </nav>
-        <div className="p-4 border-t border-line">
+        <div className="p-4 border-t border-line flex items-center gap-2">
           <button
             onClick={logout}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-btn text-sm font-medium text-muted hover:bg-glass hover:text-ink w-full"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-btn text-sm font-medium text-muted hover:bg-glass hover:text-ink flex-1"
           >
             <LogOut className="h-4 w-4" /> Sign out
           </button>
+          <ThemeToggle />
         </div>
       </aside>
 
@@ -89,13 +91,16 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <Link href="/admin">
             <Logo />
           </Link>
-          <button
-            className="p-2 rounded-btn hover:bg-line/40"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <button
+              className="p-2 rounded-btn hover:bg-line/40"
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </header>
         <main className="flex-1 px-5 sm:px-8 py-8">{children}</main>
         <footer className="px-5 sm:px-8 py-4 text-xs text-muted border-t border-line">

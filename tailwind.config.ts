@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -17,45 +18,45 @@ const config: Config = {
     extend: {
       colors: {
         /*
-         * BREAKING BUD accent — kept under the legacy `purple` key so existing
-         * markup keeps compiling. The value is the toxic-green ramp, inverted
-         * (50 = darkest lab panel, 900 = brightest) so old light-tint usages
-         * read correctly on the dark surface.
+         * BREAKING BUD accent — the toxic-green ramp, kept under the legacy
+         * `purple` key so existing markup keeps compiling. Values are driven by
+         * CSS variables (see globals.css) so every token swaps between the
+         * light ("lab paper") and dark ("fume lab") palettes automatically.
          */
         purple: {
-          DEFAULT: "#74C334", // toxic green — links, actions, product tiles
-          light: "#9BE84A", // reaction — highlights / glow
-          dark: "#B4F000", // toxic yield — hero accent, strongest emphasis
-          50: "#0F1A0A",
-          100: "#16240D",
-          200: "#22371A",
-          300: "#33501F",
-          400: "#5A8F2A",
-          500: "#74C334",
-          600: "#86D341",
-          700: "#9BE84A",
-          800: "#B4F000",
-          900: "#C9FF4D",
+          DEFAULT: "rgb(var(--purple) / <alpha-value>)", // links, actions, tile symbol
+          light: "rgb(var(--purple-light) / <alpha-value>)", // highlights / glow
+          dark: "rgb(var(--purple-dark) / <alpha-value>)", // strongest emphasis / hover
+          50: "rgb(var(--purple-50) / <alpha-value>)",
+          100: "rgb(var(--purple-100) / <alpha-value>)",
+          200: "rgb(var(--purple-200) / <alpha-value>)",
+          300: "rgb(var(--purple-300) / <alpha-value>)",
+          400: "rgb(var(--purple-400) / <alpha-value>)",
+          500: "rgb(var(--purple-500) / <alpha-value>)",
+          600: "rgb(var(--purple-600) / <alpha-value>)",
+          700: "rgb(var(--purple-700) / <alpha-value>)",
+          800: "rgb(var(--purple-800) / <alpha-value>)",
+          900: "rgb(var(--purple-900) / <alpha-value>)",
         },
         // Named brand tokens for new markup
         toxic: {
-          yield: "#B4F000",
-          green: "#74C334",
-          reaction: "#9BE84A",
+          yield: "rgb(var(--toxic-yield) / <alpha-value>)",
+          green: "rgb(var(--toxic-green) / <alpha-value>)",
+          reaction: "rgb(var(--toxic-reaction) / <alpha-value>)",
         },
-        fume: "#060706",
-        panel: "#0E140A",
-        glass: "#142318",
-        bone: "#E9E7DD",
-        gold: "#B4F000", // legacy premium accent -> toxic yield
-        background: "#0A0C0A",
-        surface: "#0E140A",
-        ink: "#E9E7DD",
-        muted: "#8A9284",
-        line: "#1E2A18",
-        success: "#74C334",
-        warning: "#F59E0B",
-        danger: "#EF4444",
+        fume: "rgb(var(--fume) / <alpha-value>)", // constant: always-dark panels
+        panel: "rgb(var(--panel) / <alpha-value>)",
+        glass: "rgb(var(--glass) / <alpha-value>)",
+        bone: "rgb(var(--bone) / <alpha-value>)", // constant: light text on dark
+        gold: "rgb(var(--gold) / <alpha-value>)",
+        background: "rgb(var(--background) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        ink: "rgb(var(--ink) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        line: "rgb(var(--line) / <alpha-value>)",
+        success: "rgb(var(--success) / <alpha-value>)",
+        warning: "rgb(var(--warning) / <alpha-value>)",
+        danger: "rgb(var(--danger) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-plex-sans)", "system-ui", "sans-serif"],

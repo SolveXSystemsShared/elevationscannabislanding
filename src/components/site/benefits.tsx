@@ -30,7 +30,7 @@ const BENEFITS = [
 
 export function Benefits() {
   return (
-    <section className="relative py-24 sm:py-32 bg-fume text-ink overflow-hidden">
+    <section className="relative py-24 sm:py-32 bg-surface text-ink overflow-hidden">
       <div
         className="absolute inset-0 opacity-40"
         style={{

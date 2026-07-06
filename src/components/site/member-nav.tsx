@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "./logo";
+import { ThemeToggle } from "./theme-toggle";
 import { useCart, useSession } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -68,6 +69,7 @@ export function MemberNav() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <button
             onClick={open}
             className="relative rounded-btn p-2.5 text-ink hover:bg-purple/8 hover:text-purple transition-colors ring-focus"

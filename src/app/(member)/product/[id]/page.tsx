@@ -293,7 +293,7 @@ export default function ProductPage() {
 
           <p className="mt-4 text-xs text-muted text-pretty">
             Discreet packaging. Member ID required at delivery. 24/7 anywhere in
-            Midrand.
+            Stellenbosch.
           </p>
         </div>
       </div>

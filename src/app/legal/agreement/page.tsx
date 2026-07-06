@@ -50,7 +50,7 @@ export default function AgreementPage() {
           <Clause n="07" title="Governing Law">
             This agreement is governed by the laws of the Republic of South
             Africa. Any disputes shall be subject to the jurisdiction of the
-            courts of Gauteng.
+            courts of the Western Cape.
           </Clause>
         </div>
       </main>

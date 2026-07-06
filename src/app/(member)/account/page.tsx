@@ -26,7 +26,7 @@ export default function AccountPage() {
     email: "",
     address_street: "",
     address_suburb: "",
-    address_city: "Midrand",
+    address_city: "Stellenbosch",
   });
 
   React.useEffect(() => {

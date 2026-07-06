@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Logo } from "./logo";
+import { ThemeToggle } from "./theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { JOIN_URL, LOGIN_URL } from "@/lib/constants";
@@ -35,7 +36,7 @@ export function PublicNav({ overlay = false }: { overlay?: boolean }) {
         scrolled
           ? "bg-surface/95 backdrop-blur-md border-b border-line shadow-sm"
           : overlay
-            ? "bg-transparent"
+            ? "surface-dark bg-transparent"
             : "bg-surface border-b border-line",
       )}
     >
@@ -62,6 +63,7 @@ export function PublicNav({ overlay = false }: { overlay?: boolean }) {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           <Button
             asChild
             variant={onDark ? "ghost" : "plain"}
@@ -76,16 +78,19 @@ export function PublicNav({ overlay = false }: { overlay?: boolean }) {
           </Button>
         </div>
 
-        <button
-          className={cn(
-            "md:hidden rounded-btn p-2 ring-focus",
-            onDark ? "text-white" : "text-ink",
-          )}
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggle />
+          <button
+            className={cn(
+              "rounded-btn p-2 ring-focus",
+              onDark ? "text-white" : "text-ink",
+            )}
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (

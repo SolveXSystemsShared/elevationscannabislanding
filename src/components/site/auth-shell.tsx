@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./logo";
+import { ThemeToggle } from "./theme-toggle";
 import { ShieldCheck } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -16,8 +17,9 @@ export function AuthShell({
 }) {
   return (
     <div className="min-h-screen bg-background flex">
+      <ThemeToggle className="absolute right-4 top-4 z-10 bg-surface/80 backdrop-blur" />
       {variant === "split" && (
-        <aside className="hidden lg:flex lg:w-2/5 xl:w-1/2 relative overflow-hidden bg-fume text-ink p-12 flex-col">
+        <aside className="surface-dark hidden lg:flex lg:w-2/5 xl:w-1/2 relative overflow-hidden bg-fume text-ink p-12 flex-col">
           <div
             className="absolute inset-0"
             style={{
@@ -45,7 +47,7 @@ export function AuthShell({
               Lab-graded flower,<br />delivered with care.
             </h2>
             <p className="mt-4 text-muted leading-relaxed">
-              A chemistry-lab dispensary. Members only, open 24/7 in Midrand.
+              A chemistry-lab dispensary. Members only, open 24/7 in Stellenbosch.
               Every strain, an element.
             </p>
             <div className="mt-8 flex items-center gap-2 font-mono text-xs text-muted">

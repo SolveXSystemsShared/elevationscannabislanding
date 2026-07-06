@@ -20,7 +20,7 @@ const STEPS = [
     n: "03",
     title: "Order",
     body:
-      "Place your order, pay securely via Yoco, and we'll deliver discreetly to your door. 24/7, anywhere in Midrand.",
+      "Place your order, pay securely via Yoco, and we'll deliver discreetly to your door. 24/7, anywhere in Stellenbosch.",
   },
 ];
 

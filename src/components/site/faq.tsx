@@ -22,7 +22,7 @@ const ITEMS = [
   },
   {
     q: "What areas do you deliver to?",
-    a: "Midrand only at this stage. We deliver via UberConnect or our preferred courier — fast, plain packaging, no fanfare.",
+    a: "Stellenbosch only at this stage. We deliver via UberConnect or our preferred courier — fast, plain packaging, no fanfare.",
   },
   {
     q: "How do I pay?",
@@ -30,7 +30,7 @@ const ITEMS = [
   },
   {
     q: "How long does delivery take?",
-    a: "Most Midrand orders arrive within 30–60 minutes. You'll see live status updates from the moment your order is placed until it arrives at your door.",
+    a: "Most Stellenbosch orders arrive within 30–60 minutes. You'll see live status updates from the moment your order is placed until it arrives at your door.",
   },
   {
     q: "Is my personal information safe?",

@@ -117,7 +117,7 @@ export default function CartPage() {
             </Link>
           </Button>
           <p className="mt-3 text-xs text-muted text-pretty">
-            Secure payment via Yoco. Delivery within Midrand only.
+            Secure payment via Yoco. Delivery within Stellenbosch only.
           </p>
         </aside>
       </div>
